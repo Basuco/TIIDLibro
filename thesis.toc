@@ -1,0 +1,112 @@
+\select@language {spanish}
+\contentsline {chapter}{\IeC {\'I}ndice General}{\es@scroman {viii}}{chapter*.2}
+\contentsline {chapter}{\IeC {\'I}ndice de Tablas}{\es@scroman {xii}}{chapter*.3}
+\contentsline {chapter}{\IeC {\'I}ndice de Figuras}{\es@scroman {xiii}}{chapter*.4}
+\contentsline {chapter}{Lista de S\IeC {\'\i }mbolos y Abreviaturas}{\es@scroman {xiv}}{chapter*.6}
+\contentsline {chapter}{Introducci\IeC {\'o}n}{1}{section*.7}
+\contentsline {chapter}{\numberline {1}Entorno Empresarial}{4}{chapter.1}
+\contentsline {section}{\numberline {1.1}Antecedentes}{4}{section.1.1}
+\contentsline {section}{\numberline {1.2}Misi\IeC {\'o}n}{5}{section.1.2}
+\contentsline {section}{\numberline {1.3}Visi\IeC {\'o}n}{5}{section.1.3}
+\contentsline {section}{\numberline {1.4}Valores}{5}{section.1.4}
+\contentsline {section}{\numberline {1.5}Estructura Organizacional}{5}{section.1.5}
+\contentsline {chapter}{\numberline {2}Marco Te\IeC {\'o}rico}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}Framework}{7}{section.2.1}
+\contentsline {section}{\numberline {2.2}Servicio Web}{7}{section.2.2}
+\contentsline {section}{\numberline {2.3}Transferencia de Estado Representacional}{8}{section.2.3}
+\contentsline {section}{\numberline {2.4}Patr\IeC {\'o}n MVC}{8}{section.2.4}
+\contentsline {section}{\numberline {2.5}Hilos}{8}{section.2.5}
+\contentsline {section}{\numberline {2.6}JavaScript}{8}{section.2.6}
+\contentsline {section}{\numberline {2.7}AngularJS}{9}{section.2.7}
+\contentsline {section}{\numberline {2.8}MongoDB}{9}{section.2.8}
+\contentsline {section}{\numberline {2.9}Bower}{9}{section.2.9}
+\contentsline {section}{\numberline {2.10}NodeJS}{9}{section.2.10}
+\contentsline {section}{\numberline {2.11}NPM}{9}{section.2.11}
+\contentsline {section}{\numberline {2.12}HTML}{10}{section.2.12}
+\contentsline {section}{\numberline {2.13}JSON}{10}{section.2.13}
+\contentsline {section}{\numberline {2.14}JAVA}{10}{section.2.14}
+\contentsline {section}{\numberline {2.15}Bitbucket}{10}{section.2.15}
+\contentsline {section}{\numberline {2.16}JAX-RS}{10}{section.2.16}
+\contentsline {section}{\numberline {2.17}Jersey}{11}{section.2.17}
+\contentsline {chapter}{\numberline {3}Marco Metodol\IeC {\'o}gico}{12}{chapter.3}
+\contentsline {section}{\numberline {3.1}Roles}{12}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Scrum Master}{12}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Product Owner}{13}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Development Team}{13}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Eventos}{13}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Sprint}{13}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Sprint Planning}{13}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Daily Sprint Meeting}{14}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Sprint Review}{14}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}Sprint Retrospective}{14}{subsection.3.2.5}
+\contentsline {section}{\numberline {3.3}Artefactos}{14}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Product Backlog}{14}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Sprint Backlog}{15}{subsection.3.3.2}
+\contentsline {chapter}{\numberline {4}Desarrollo de la aplicaci\IeC {\'o}n}{16}{chapter.4}
+\contentsline {section}{\numberline {4.1}Familiarizarse con la empresa}{17}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Objetivos}{17}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Actividades}{17}{subsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.2.1}Familiarizarse con la empresa tedexis y el modelo de negocios empleado}{17}{subsubsection.4.1.2.1}
+\contentsline {subsubsection}{\numberline {4.1.2.2}Analizar el modelo de datos local, de la plataforma y dem\IeC {\'a}s fuentes de datos de la aplicaci\IeC {\'o}n}{18}{subsubsection.4.1.2.2}
+\contentsline {section}{\numberline {4.2}Levantamiento de informaci\IeC {\'o}n}{19}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Objetivos}{19}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Actividades}{19}{subsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.2.1}Obtener los reportes que genera el sistema y son usados por los clientes de Tedexis}{19}{subsubsection.4.2.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2.2}Definir las opciones que existen por cada reporte generado por el sistema e identificar los servicios que son ofrecidos por la interfaz}{19}{subsubsection.4.2.2.2}
+\contentsline {subsubsection}{\numberline {4.2.2.3}Obtener los roles disponibles y los privilegios asociados}{20}{subsubsection.4.2.2.3}
+\contentsline {section}{\numberline {4.3}Desarrollo de documentaci\IeC {\'o}n}{20}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Objetivos}{20}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Actividades}{20}{subsection.4.3.2}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Creaci\IeC {\'o}n de documentos inciales}{20}{subsubsection.4.3.2.1}
+\contentsline {section}{\numberline {4.4}Selecci\IeC {\'o}n de tecnolog\IeC {\'\i }as}{23}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Objetivos}{23}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Actividades}{23}{subsection.4.4.2}
+\contentsline {subsubsection}{\numberline {4.4.2.1}Selecci\IeC {\'o}n de frameworks de desarrollo}{23}{subsubsection.4.4.2.1}
+\contentsline {section}{\numberline {4.5}Desarrollo del back-end}{23}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Objetivos}{23}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Actividades}{23}{subsection.4.5.2}
+\contentsline {subsubsection}{\numberline {4.5.2.1}Dise\IeC {\~n}o y creaci\IeC {\'o}n de la base de datos}{24}{subsubsection.4.5.2.1}
+\contentsline {subsubsection}{\numberline {4.5.2.2}Creaci\IeC {\'o}n de hilos consolidadores de informaci\IeC {\'o}n}{27}{subsubsection.4.5.2.2}
+\contentsline {subsubsection}{\numberline {4.5.2.3}Pruebas}{28}{subsubsection.4.5.2.3}
+\contentsline {section}{\numberline {4.6}Autenticaci\IeC {\'o}n}{28}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Objetivos}{28}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}Actividades}{29}{subsection.4.6.2}
+\contentsline {subsubsection}{\numberline {4.6.2.1}Creaci\IeC {\'o}n del servicio Web RESTful}{29}{subsubsection.4.6.2.1}
+\contentsline {subsubsection}{\numberline {4.6.2.2}Autenticaci\IeC {\'o}n del usuario}{29}{subsubsection.4.6.2.2}
+\contentsline {subsubsection}{\numberline {4.6.2.3}Pruebas}{30}{subsubsection.4.6.2.3}
+\contentsline {section}{\numberline {4.7}Inicio del desarrollo de Reportes por Empresa}{30}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}Objetivos}{30}{subsection.4.7.1}
+\contentsline {subsection}{\numberline {4.7.2}Actividades}{31}{subsection.4.7.2}
+\contentsline {subsubsection}{\numberline {4.7.2.1}Creaci\IeC {\'o}n de vista Saldo Pasaporte}{31}{subsubsection.4.7.2.1}
+\contentsline {subsubsection}{\numberline {4.7.2.2}Creaci\IeC {\'o}n de vista Evoluci\IeC {\'o}n del Tr\IeC {\'a}fico}{31}{subsubsection.4.7.2.2}
+\contentsline {subsubsection}{\numberline {4.7.2.3}Creaci\IeC {\'o}n de vistas Evoluci\IeC {\'o}n D\IeC {\'\i }a y Evoluci\IeC {\'o}n Hora}{32}{subsubsection.4.7.2.3}
+\contentsline {subsubsection}{\numberline {4.7.2.4}Pruebas}{32}{subsubsection.4.7.2.4}
+\contentsline {section}{\numberline {4.8}Fin del desarrollo de Reportes por Empresa}{34}{section.4.8}
+\contentsline {subsection}{\numberline {4.8.1}Objetivos}{34}{subsection.4.8.1}
+\contentsline {subsection}{\numberline {4.8.2}Actividades}{34}{subsection.4.8.2}
+\contentsline {subsubsection}{\numberline {4.8.2.1}Desarrollo de vistas Top Empresas y Top Pasaportes}{34}{subsubsection.4.8.2.1}
+\contentsline {subsubsection}{\numberline {4.8.2.2}Desarrollo de vistas Campa\IeC {\~n}as y Distribuci\IeC {\'o}n Operadoras}{34}{subsubsection.4.8.2.2}
+\contentsline {subsubsection}{\numberline {4.8.2.3}Pruebas}{36}{subsubsection.4.8.2.3}
+\contentsline {section}{\numberline {4.9}Desarrollo de Reportes por Pasaporte}{36}{section.4.9}
+\contentsline {subsection}{\numberline {4.9.1}Objetivos}{36}{subsection.4.9.1}
+\contentsline {subsection}{\numberline {4.9.2}Actividades}{36}{subsection.4.9.2}
+\contentsline {subsubsection}{\numberline {4.9.2.1}Desarrollo de vistas de reporte de tr\IeC {\'a}fico}{36}{subsubsection.4.9.2.1}
+\contentsline {subsubsection}{\numberline {4.9.2.2}Pruebas}{38}{subsubsection.4.9.2.2}
+\contentsline {section}{\numberline {4.10}Desarrollo de ultimas vistas del front-end}{39}{section.4.10}
+\contentsline {subsection}{\numberline {4.10.1}Objetivos}{39}{subsection.4.10.1}
+\contentsline {subsection}{\numberline {4.10.2}Actividades}{39}{subsection.4.10.2}
+\contentsline {subsubsection}{\numberline {4.10.2.1}Vista principal}{39}{subsubsection.4.10.2.1}
+\contentsline {subsubsection}{\numberline {4.10.2.2}Soporte}{40}{subsubsection.4.10.2.2}
+\contentsline {section}{\numberline {4.11}Pruebas por el personal de la empresa}{40}{section.4.11}
+\contentsline {subsection}{\numberline {4.11.1}Objetivos}{40}{subsection.4.11.1}
+\contentsline {subsection}{\numberline {4.11.2}Actividades}{40}{subsection.4.11.2}
+\contentsline {subsubsection}{\numberline {4.11.2.1}Pruebas del equipo de producto}{40}{subsubsection.4.11.2.1}
+\contentsline {subsubsection}{\numberline {4.11.2.2}Pruebas del equipo de comercio}{41}{subsubsection.4.11.2.2}
+\contentsline {section}{\numberline {4.12}Redacci\IeC {\'o}n del libro de pasant\IeC {\'\i }a}{41}{section.4.12}
+\contentsline {subsection}{\numberline {4.12.1}Objetivos}{41}{subsection.4.12.1}
+\contentsline {subsection}{\numberline {4.12.2}Actividades}{41}{subsection.4.12.2}
+\contentsline {subsubsection}{\numberline {4.12.2.1}Redacci\IeC {\'o}n del libro y versi\IeC {\'o}n final de los documentos de la empresa}{41}{subsubsection.4.12.2.1}
+\contentsline {chapter}{\numberline {5}Conclusiones y Recomendaciones}{42}{chapter.5}
+\contentsline {chapter}{Bibliograf\'{\i }a}{44}{chapter*.35}
+\contentsline {chapter}{\numberline {A}Documento de Definici\IeC {\'o}n de Requerimientos }{46}{appendix.Alph1}
+\contentsline {chapter}{\numberline {B}Documento de Definici\IeC {\'o}n de Proyecto }{54}{appendix.Alph2}

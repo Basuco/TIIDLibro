@@ -1,0 +1,73 @@
+@misc{MTRAD,
+	author = {C. Rigney, S. Willens, Livingston, A. Rubens, Merit, W. Simpson},                                
+	Title = {RFC 2865 RADIUS},
+	year = {Junio, 2000},
+	howpublished = "\url{https://tools.ietf.org/html/rfc2865 }, consultado el 5 de mao de 2016"
+}
+
+@book{MTFR,
+	author = {Dirk van der Walt},
+	title = {FreeRADIUS Beginner's Guide},
+	year = {2011},
+	publisher = {Packt Publishing}
+}
+
+@misc{MTTG,
+	author  = {Network RADIUS SARL},
+	Title = {THE FREERADIUS TECHNICAL GUIDE},
+	year = {2014},
+	howpublished = "\url{http://networkradius.com/doc/FreeRADIUS%20Technical%20Guide.pdf}, consultado el 5 de mayo de 2016",
+}
+
+@misc{MTDT,
+	Title = {Django Girls Tutorial},
+	year = {2015},
+	howpublished = "\url{http://tutorial.djangogirls.org/es/django/}, consultado el 5 de mayo de 2016",
+}
+
+@misc{MTFP,
+	Title = {The FreeRADIUS Project},
+	year = {2015},
+	howpublished = "\url{http://freeradius.org/}, consultado el 5 de mayo de 2016",
+}
+
+@misc{MTMD,
+	author = {Microsoft Developer Network},
+	Title = {Descripción general de Microsoft Solutions Framework (MSF)},
+	year = {2016},
+	howpublished = "\url{https://msdn.microsoft.com/es-es/library/jj161047(v=vs.120).aspx}, consultado el 5 de mayo de 2016",
+}
+
+@misc{MTOK,
+	 Title = {Opera Knowlegde},
+	 year = {2016},
+	 howpublished = "\url{https://docs.oracle.com/cd/E53547_01/opera_5_04_03_core_help/index.htm?toc.htm?ifc8_program.htm}, consultado el 5 de mayo de 2016".
+}
+
+@misc{MTUNET,
+	 Title = {Investigación de aula virtual, Arquitectura UNET}
+	 year = {2016},
+	 howpublished = "\url{http://lia.unet.edu.ve/avaunet/Glosario.htm}, consultado el 5 de mayo de 2016."
+}
+
+@misc{MTOM,
+	Title = {Oracle Micros}
+	year = {2016},
+	howpublished = "\url{http://www.micros-fidelio.eu/es-ES/Solutions/Products-N-Z/OPERA-Property-Management-System.aspx}, consultado el 5 de mayo de 2016."
+}
+
+@misc{MTSH,
+    author = {Wayback Machine},
+	Title = {¿Qué son los stakeholders?}
+	year = {2016},
+	howpublished = "\url{http://web.archive.org/web/20080723192858/http://www.rsc-chile.cl/modules/qpages/que-son-los-stakeholders/}, consultado el 1 de junio de 2016."
+}
+
+@misc{MTSH,
+    author = {Oracle},
+	Title = {Welcome to OPERA Property Management System (PMS)}
+	year = {2016},
+	howpublished = "\url{https://docs.oracle.com/cd/E53533_01/opera_5_5_1_0_core_help/21345.htm}, consultado el 2 de junio de 2016."
+}
+
+ 

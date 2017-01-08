@@ -1,0 +1,474 @@
+El protocolo IFF esta basado en recursos. Los recursos son fuentes de información sobre las cuales se realizan las peticiones. Estos recursos son divididos en dos grandes grupos, los concretos y los abstractos.
+
+\subsection{Recursos concretos}
+Los recursos concretos son la representación directa del modelo de datos que expone el core bancario para ofrecer sus servicios. Este tipo de recursos es muy sencillo y son los que permiten realizar las operaciones más básicas. \\
+
+A continuación se presentan los recursos concretos.
+
+\subsubsection{Nombre de usuario ``login''}
+Contiene la información que relaciona el nombre de usuario electrónico con su información  en la institución financiera.
+
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+username & Cadena de caracteres (6-20) & Requerido & ID de ingreso del cliente \\ 
+\hline 
+password & Cadena de caracteres (6+) & Opcional & Clave de ingreso \\ 
+\hline 
+custPermId & Cadena de caracteres (32+) & Requerido & ID permanente del cliente. Es asignado por la institución financiera para representar al cliente en el sistema \\ 
+\hline 
+\end{tabular}
+\end{center}
+
+\subsubsection{Cliente ``customer''}
+Tiene la información que identifica inequívocamente a un cliente.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.25\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+custPermId & Cadena de caracteres (32+) & Opcional & ID permanente del cliente. Es asignado por la institución financiera para representar al cliente en el sistema \\ 
+\hline 
+personId & Cadena de caracteres (32+) & Opcional & Relación al objeto ``person'' \\ 
+\hline 
+custLogin & Cadena de caracteres (6-20) & Opcional & ID permanente del cliente. Es asignado por la institución financiera para representar al cliente en el sistema \\ 
+\hline 
+personalIdent & Cadena de caracteres (8+) & Requerido & Identificación personal presentada por el cliente \\ 
+\hline 
+personVerifyType & Enumeración & Requerido & El tipo de documento con el cual se verifica la identidad del cliente \\ 
+\hline
+dtBCustomer & Fecha & Opcional & Momento en el cual la persona se vuelve cliente de la institución \\ 
+\hline
+dtLLogin & Fecha & Opcional & Último momento en el cual el cliente utiliza su cuenta \\ 
+\hline
+group & Cadena de caracteres (32+) & Opcional & Relaciona al cliente con el objeto ``grupo'' \\ 
+\hline
+\end{longtable}
+\end{center}
+
+\subsubsection{Información del banco ``bankInformation''}
+Agrupa la información esencial de una agencia bancaria.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+bankId & Cadena de caracteres (4+) & Opcional & ID que identifica a la agencia bancaria \\ 
+\hline 
+name & Cadena de caracteres & Opcional & Nombre de la agencia \\ 
+\hline 
+branchId & Cadena de caracteres & Opcional & ID que identifica a la sucursal \\ 
+\hline 
+branchName & Cadena de caracteres & Opcional & Nombre de la sucursal \\ 
+\hline 
+postAddr & Cadena de caracteres & Opcional & Dirección \\ 
+\hline
+city & Cadena de caracteres & Opcional & Ciudad \\ 
+\hline
+stateProv & Cadena de caracteres & Opcional & Estado o Provincia \\ 
+\hline
+postalCode &  Cadena de caracteres (4+) & Opcional & Código postal \\ 
+\hline
+country & Cadena de caracteres & Opcional & País \\ 
+\hline
+\end{longtable}
+\end{center}
+
+\subsubsection{Dirección ``address''}
+Representa la dirección suministrada por el cliente.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+addressId & Cadena de caracteres & Opcional & ID que identifica a la dirección \\ 
+\hline 
+custPermId & Cadena de caracteres (32+) & Requerido & ID permanente del cliente. Es asignado por la institución financiera para representar al cliente en el sistema \\
+\hline 
+nameAddrType & Enumeración & Requerido & Define el uso de la información suministrada \\ 
+\hline 
+addr & Cadena de caracteres & Opcional & Dirección \\ 
+\hline
+city & Cadena de caracteres & Opcional & Ciudad \\ 
+\hline
+stateProv & Cadena de caracteres & Opcional & Estado o Provincia \\ 
+\hline
+postalCode &  Cadena de caracteres (4+) & Opcional & Código postal \\ 
+\hline
+country & Cadena de caracteres & Opcional & País \\ 
+\hline
+addrType & Enumeración & Opcional & Define el tipo de dirección \\ 
+\hline
+startDt & Hora & Opcional & Hora de inicio \\ 
+\hline
+endDt & Hora & Opcional & Hora de fin \\ 
+\hline
+\end{longtable}
+\end{center}
+
+\subsubsection{Información de contacto ``contactInfo''}
+Información suministrada por el cliente para poder ser contactado en caso de necesitarlo.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.25\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+contactInfoId & Cadena de caracteres (32+) & Opcional & ID que identifica la información de contacto del cliente \\ 
+\hline 
+custPermId & Cadena de caracteres (32+) & Requerido & ID permanente del cliente. Es asignado por la institución financiera para representar al cliente en el sistema \\
+\hline 
+custContactPref & Enumeración & Requerido & Representa la manera en la cual el cliente será contactado \\ 
+\hline 
+prefTimeStart & Hora & Opcional & Hora a partir de la cual puede ser contactado \\ 
+\hline
+prefTimeEnd & Hora de caracteres & Opcional & Hora a partir de la cual ya no puede ser contactado \\ 
+\hline
+dayPhone & Cadena de caracteres & Opcional (ver descripción) & Teléfono de contacto durante el día. 
+\\ & & & \\
+& & & Este campo es requerido si ni ``evePhone'', ``dayFax'', ``eveFax'' o ``emailAddr'' es suministrado \\ 
+\hline
+evePhone & Cadena de caracteres & Opcional (ver descripción) & Teléfono de contacto durante la tarde. \\ & & & \\
+& & & Este campo es requerido si ni ``dayPhone'', ``dayFax'', ``eveFax'' o ``emailAddr'' es suministrado \\ 
+\hline
+dayFax & Cadena de caracteres & Opcional (ver descripción) & Fax de contacto durante el día. \\ & & & \\
+& & & Este campo es requerido si ni ``dayPhone'', ``evePhone'', ``eveFax'' o ``emailAddr'' es suministrado \\ 
+\hline
+eveFax & Cadena de caracteres & Opcional (ver descripción) & Fax de contacto durante la tarde. \\ & & & \\
+& & & Este campo es requerido si ni ``dayPhone'', ``evePhone'', ``dayFax'' o ``emailAddr'' es suministrado \\ 
+\hline
+emailAddr & Cadena de caracteres & Opcional (ver descripción) & Correo electrónico de contacto. \\ & & & \\
+& & & Este campo es requerido si ni ``dayPhone'', ``evePhone'', ``dayFax'' o ``eveFax'' es suministrado \\ 
+\hline
+\end{longtable}
+\end{center}
+
+\subsubsection{Información personal ``personalInfo''}
+Contiene la información personal de un cliente.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+personalInfoId & Cadena de caracteres (32+) & Opcional & ID que identifica a la información personal del cliente \\ 
+\hline 
+custPermId & Cadena de caracteres (32+) & Requerido & ID permanente del cliente. Es asignado por la institución financiera para representar al cliente en el sistema \\
+\hline 
+lastName & Cadena de caracteres & Requerido & Apellido del cliente \\ 
+\hline 
+firstName & Cadena de caracteres & Requerido & Dirección \\ 
+\hline
+middleName & Cadena de caracteres & Opcional & Ciudad \\ 
+\hline
+tittlePrefix & Cadena de caracteres & Opcional & Titulo por el cual llamar al cliente. Por ejemplo ``Dr.'' \\ 
+\hline
+nameSuffix & Cadena de caracteres & Opcional & Sufijo agregado al final del nombre del cliente. Por ejemplo ``Jr.'' \\ 
+\hline
+\end{longtable}
+\end{center}
+
+\subsubsection{Preferencia ``preference''}
+Permite al cliente definir cierto comportamiento sobre su cuenta. El cliente puede establecer un monto predeterminado para concepto de retiro sobre una de sus cuentas. También, si se le ha hecho una transferencia al cliente y no se especificó cuenta destino, el dinero será transferido a la cuenta que el cliente haya definido por defecto.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+preferenceId & Cadena de caracteres (32+) & Opcional & ID que identifica a la información de preferencia del cliente \\ 
+\hline 
+custPermId & Cadena de caracteres (32+) & Requerido & ID permanente del cliente. Es asignado por la institución financiera para representar al cliente en el sistema \\
+\hline 
+acctId & Cadena de caracteres (32+) & Opcional & ID de la cuenta a la cual se le aplicaran los consumos por concepto de retiros predefinidos \\ 
+\hline 
+defaultTranfAccount & Cadena de caracteres (32+) & Opcional & ID de la cuenta a la cual se le aplicaran las transferencias sin cuenta de destino especificada \\ 
+\hline
+withdrawalAmt & Cadena de caracteres (32+) & Opcional (ver descripción) & Monto de retiro por defecto. 
+\\ & & & \\
+& & & Este campo es requerido si ``acctId'' es especificado \\
+\hline
+\end{longtable}
+\end{center}
+
+\subsubsection{Transferencias a terceros ``registeredRecipient''}
+Contiene los datos de alguna cuenta o tarjeta de otro banco junto con la identificación de sus acreedores.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.25\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+recipientId & Cadena de caracteres (32+) & Opcional & ID que identifica la información acerca de un cliente en otra institución financiera \\ 
+\hline 
+custPermId & Cadena de caracteres (32+) & Requerido & ID permanente del cliente. Es asignado por la institución financiera para representar al cliente en el sistema \\
+\hline 
+personId & Cadena de caracteres (32+) & Opcional & ID que identifica al objeto ``person'' \\ 
+\hline 
+acctNum & Cadena de caracteres & Opcional (ver descripción) & representa el número de cuenta en alguna otra institución financiera. 
+\\ & & & \\
+& & & Este campo es requerido si ``cardSeqNum'' no es especificado \\ 
+\hline
+cardSeqNum & Cadena de caracteres & Opcional (ver descripción) & representa el número de tarjeta de alguna otra institución financiera. 
+\\ & & & \\
+& & & Este campo es requerido si ``acctNum'' no es especificado \\ 
+\hline
+name & Cadena de caracteres & Requerido & Nombre del beneficiario \\ 
+\hline
+desc & Cadena de caracteres & Requerido & Descripción \\ 
+\hline
+maxAmtLimit & Cadena de caracteres & Opcional & Máximo monto permitido para realizar la transferencia \\ 
+\hline
+personalIdent & Cadena de caracteres (8+) & Requerido & Identificación personal presentada por el cliente \\ 
+\hline
+personVerifyType & Enumeración & Requerido & El tipo de documento con el cual se verifica la identidad del cliente \\ 
+\hline
+\end{longtable}
+\end{center}
+
+\subsubsection{Persona ``person''}
+Contiene los datos que identifican a los clientes como personas. También reúne los
+datos de los clientes que tienen cuentas en otros bancos, estos datos provienen de
+``registeredRecipient''.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+personId & Cadena de caracteres (32+) & Opcional & ID que identifica a la información de una persona \\ 
+\hline 
+name & Cadena de caracteres & Requerido & Nombre \\
+\hline 
+\end{longtable}
+\end{center}
+
+\subsubsection{Conocido ``known''}
+Contiene la información de las personas conocidas. De esta forma se puede pueden
+realizar transferencias a personas en lugar de a cuentas.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+knownId & Cadena de caracteres (32+) & Opcional & ID que identifica a la información acerca de un conocido	 \\ 
+\hline 
+personId & Cadena de caracteres (32+) & Requerido & ID que identifica la información acerca de una persona.
+\\ & & & \\
+& & & En este caso representa a un conocido \\
+\hline 
+custPermId & Cadena de caracteres (32) & Requerido & ID permanente del cliente. Es asignado por la institución financiera para representar al cliente en el sistema.
+\\ & & & \\
+& & & En este caso representa al conocedor \\
+\hline 
+relationship & Cadena de caracteres & Requerido & Describe el tipo de relación entre el conocedor y el conocido. \\ 
+\hline 
+status & Booleano & Opcional & Representa si se ha validado que estas dos personas se conocen \\ 
+\hline 
+\end{longtable}
+\end{center}
+
+\subsubsection{Miembro de un grupo ``groupMember''}
+Un cliente tiene la capacidad de crear grupo de personas conocidas. De esta forma puede establecer en que cuenta serán ubicados los fondos recibidos por parte de algún miembro del grupo. Un miembro del grupo es aquel cliente que pertenezca a un grupo.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.25\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+groupMemberId & Cadena de caracteres (32+) & Opcional & ID que identifica al objeto ``groupMember'' \\ 
+\hline 
+custPermId & Cadena de caracteres (32+) & Requerido & ID permanente del cliente. Es asignado por la institución financiera para representar al cliente en el sistema \\
+\hline 
+member & Cadena de caracteres (32+) & Requerido & Representa al cliente miembro del grupo \\
+\hline 
+groupId & Cadena de caracteres (32+) & Requerido & Identifica al grupo al cual pertenece un miembro de grupo\\
+\hline 
+\end{longtable}
+\end{center}
+
+\subsubsection{Grupo ``group''}
+Es una unidad en la cual un cliente puede agrupar a otros clientes del banco y
+predefinir una cuenta en la cual los miembros al grupo transferirán.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+groupId & Cadena de caracteres (32+) & Opcional & ID que identifica al objeto ``group'' \\ 
+\hline
+acctId & Cadena de caracteres (32+) & Opcional & ID de la cuenta a la cual se le aplicaran los consumos por concepto de retiros predefinidos \\ 
+\hline 
+name & Cadena de caracteres & Requerido & Nombre del grupo \\
+\hline 
+descripción & Cadena de caracteres & Opcional & Descripción del grupo \\
+\hline 
+\end{longtable}
+\end{center}
+
+\subsubsection{Estado de la cuenta ``accountStatus''}
+Tiene la información del estado en el cual se encuentra la cuenta.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.25\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+accountStatusId & Cadena de caracteres (32+) & Opcional & ID que identifica al objeto ``accountStatus'' \\ 
+\hline
+acctId & Cadena de caracteres (32+) & Opcional & ID de la cuenta a la cual se le aplicaran los consumos por concepto de retiros predefinidos \\ 
+\hline 
+accountStatusCode & Enumeración & Requerido & Representa el estado de la cuenta \\
+\hline 
+effDt & Fecha & Opcional & Fecha en la cual se hizo efectivo dicho estado \\
+\hline 
+statusModBy & Cadena de caracteres & Opcional & Tiene la información acerca de quien modificó el estado \\
+\hline 
+statusDesc & Cadena de caracteres & Opcional & Descripción sobre el estado \\
+\hline 
+\end{longtable}
+\end{center}
+
+\subsubsection{Estado de la tarjeta ``cardStatus''}
+Contiene la información del estado en el cual se encuentra la tarjeta.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.25\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+card	StatusId & Cadena de caracteres (32+) & Opcional & ID que identifica al objeto ``cardStatus'' \\ 
+\hline
+cardEmBossNum & Cadena de caracteres (32+) & Requerido & Número de la tarjeta a la cual pertenece el estado \\ 
+\hline 
+cardStatusCode & Enumeración & Requerido & Representa el estado de la tarjeta \\
+\hline 
+effDt & Fecha & Opcional & Fecha en la cual se hizo efectivo dicho estado \\
+\hline 
+statusModBy & Cadena de caracteres & Opcional & Tiene la información acerca de quien modificó el estado \\
+\hline 
+statusDesc & Cadena de caracteres & Opcional & Descripción sobre el estado \\
+\hline 
+\end{longtable}
+\end{center}
+
+\subsubsection{Tarjeta ``card''}
+Contiene la información de la tarjeta.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.25\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+cardEmBossNum & Cadena de caracteres (32+) & Requerido & Número de la tarjeta \\ 
+\hline
+acctId & Cadena de caracteres (32+) & Requerido & ID de la cuenta a la cual se le aplicaran los consumos por concepto de retiros predefinidos \\ 
+\hline
+cardType & Enumeración & Opcional & Tipo de tarjeta \\
+\hline 
+brand & Enumeración & Opcional & Consorcio al que pertenece la tarjeta \\
+\hline 
+issuerName & Cadena de caracteres & Opcional & Nombre del tarjetahabiente \\
+\hline 
+issDt & Fecha & Opcional & Fecha en la cual se emite la tarjeta \\
+\hline 
+expDt & Fecha & Opcional & Fecha en la cual expira la tarjeta \\
+\hline 
+\end{longtable}
+\end{center}
+
+\subsubsection{Balance ``balance''}
+Contiene la información del dinero existente en una cuenta y las transacciones que
+la han afectado.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline 
+acctId & Cadena de caracteres (32+) & Requerido & ID de la cuenta a la cual pertenece el balance \\ 
+\hline
+transId & Entero (8) & Opcional & ID de la transacción que afectó el balance \\
+\hline 
+curAmt & Decimal & Requerido & Cantidad de dinero en la cuenta para la fecha \\
+\hline 
+effDt & Fecha & requerido & Fecha en la cual se afectó el balance \\
+\hline 
+descr & Cadena de caracteres & Opcional & Descripción \\
+\hline 
+\end{longtable}
+\end{center}
+
+\subsubsection{Transacción ``transaction''}
+Cualquier movimiento que afecte algún balance.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline
+transId & Entero (8) & Opcional & ID de la transacción \\
+\hline 
+acctId & Cadena de caracteres (32+) & Requerido & ID de la cuenta que realizó la transacción \\ 
+\hline 
+acctOutFlow & Cadena de caracteres (32+) & Opcional (ver descripción) & ID de la cuenta a la cual se le debitará el dinero.
+\\ & & & \\
+& & & Este campo es requerido en caso de que la transacción debite de alguna forma dinero de la cuenta \\
+\hline 
+acctInFlow & Cadena de caracteres (32+) & Opcional (ver descripción) & ID de la cuenta que recibirá el dinero.
+\\ & & & \\
+& & & Este campo es requerido en caso de que la transacción abone de alguna forma dinero a la cuenta \\
+\hline
+thirdParty & Cadena de caracteres & Opcional (ver descripción) & ID de la cuenta o tarjeta de un beneficiario en otro banco.
+\\ & & & \\
+& & & Este campo es requerido en caso de existir un tercero involucrado \\
+\hline
+amt & Decimal & Requerido & Cantidad de dinero que moverá la transacción \\
+\hline 
+dueDt & Fecha & Requerido & Fecha en la cual se desea la transacción sea efectuada \\
+\hline 
+curDt & Fecha & Requerido & Fecha en la cual se realizó la transacción \\
+\hline 
+transType & Enumeración & Opcional & Tipo de transacción realizada \\
+\hline 
+\end{longtable}
+\end{center}
+
+\subsubsection{Transacción ``transaction''}
+Cualquier movimiento que afecte algún balance.
+
+\begin{center}
+\begin{longtable}{|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|>{\centering\arraybackslash}p{0.2\textwidth}|}
+\hline 
+\bfseries {Etiqueta} & \bfseries {Tipo} & \bfseries {Uso} & \bfseries {Descripción} \\ 
+\hline
+acctId & Cadena de caracteres (32+) & Requerido & ID de la cuenta que realizó la transacción \\ 
+\hline 
+bankId & Cadena de caracteres & Requerido & ID que identifica a la agencia bancaria \\
+\hline 
+custPermId & Cadena de caracteres (32+) & Requerido & ID permanente del cliente. Es asignado por la institución financiera para representar al cliente en el sistema 
+\\ & & & \\
+& & & Este campo es requerido si la cuenta no es compartida \\
+\hline
+acctType & Enumeración & Requerido & Define de qué tipo es la cuenta \\
+\hline
+freeForAll & Booleano & Opcional (ver descripción) & En caso de que la cuenta sea compartida, define si cualquiera puede efectuar operaciones o se necesita la aprobación de todos los participantes.
+\\ & & & \\
+& & & Es requerido si el campo ``custPermId'' no está definido \\
+\hline 
+members & Entero & Opcional (ver descripción) & Define cuantos clientes comparten la cuenta
+\\ & & & \\
+& & & El campo es requerido si ``freeForAll'' está definido \\
+\hline 
+\end{longtable}
+\end{center}
+
+\subsection{Recursos abstractos}
+A diferencia de los recursos concretos, los recursos abstractos no representan objetos en la base de datos. Estos recursos ofrecen una información más general y son producto de una recopilación de información sobre varios objetos en la base de datos. También se pueden utilizar estos recursos para ofrecer una forma más sencilla de actualizar alguna información en el sistema. Por ejemplo, si se desea registrar un nuevo cliente, se tendrían que mandar varias peticiones para crear los recursos necesarios para que el cliente sea registrado. Para evitar mandar varias peticiones se podría ofrecer un recurso que recopile toda la información necesaria y este se encargue de crear los recursos concretos necesarios para que el nuevo cliente pueda ser registrado.

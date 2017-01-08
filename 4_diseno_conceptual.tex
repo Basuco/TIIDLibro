@@ -1,0 +1,528 @@
+ % Marco Teorico.
+\chapter{Desarrollo de la aplicación} \label{chap:Desarollo de la aplicacion}
+
+\vspace{5 mm}
+
+    Este capítulo describe el desarrollo completo del sistema empleando la metodología \textit{Scrum}. Se mostrarán los 12 \textit{Sprints} que corresponden a las siguientes fases: análisis y especificación de requerimientos, diseño e implementación. De igual manera, se describen los artefactos generados, actividades realizadas y soluciones a problemas presentados durante el desarrollo de cada \textit{Sprint}. A continuación se muestra en la tabla \ref{table:durSprint} la distribución del tiempo de cada \textit{Sprint}.
+% \indent En la tabla \ref{table:durSprint}, se indica la distribución del tiempo que tomó cada Sprint para su realización.
+
+ \begin{table}[H]
+ \centering
+ \begin{tabular}{p{2cm} p{8cm} p{3cm}} 
+ \hline
+ Sprint & Nombre & Duración Semanas \\ [0.5ex] 
+ \hline\hline
+ 1 & Familiarizarse con la empresa & 2 \\ 
+ \hline
+ 2 & Levantamiento de información & 1 \\
+ \hline
+ 3 & Desarrollo de documentación & 1 \\
+ \hline
+ 4 & Selección de tecnologías & 1 \\
+ \hline
+ 5 & Desarrollo del back-end & 2 \\ 
+ \hline
+ 6 & Autenticación & 2 \\ 
+ \hline
+ 7 & Inicio del desarrollo de Reportes por Empresa & 3 \\ 
+ \hline
+ 8 & Fin del desarrollo de Reportes por Empresa & 2 \\ 
+ \hline
+ 9 & Desarrollo de Reportes por Pasaporte & 1 \\ 
+ \hline
+ 10 & Desarrollo de ultimas vistas del front-end & 1 \\ 
+ \hline
+ 11 & Pruebas por el personal de la empresa & 2 \\ 
+ \hline
+ 12 & Redacción del libro de pasantias & 2 \\ [1ex]
+ \hline
+\end{tabular}
+\footnotesize \caption{Tabla de duración de Sprints}
+\label{table:durSprint}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+\section{Familiarizarse con la empresa} \label{sect:Familiarizarse con la empresa}
+
+\subsection{Objetivos}
+\begin{itemize}[noitemsep,nolistsep]
+\item Integración y conocimiento general de la empresa Tedexis, modelo de negocio y lugar de trabajo. 
+\end{itemize}
+
+\subsection{Actividades}
+
+\subsubsection{Familiarizarse con la empresa tedexis y el modelo de negocios empleado}
+\indent Desde el año 2000, Tedexis ofrece servicios de alta calidad para que las empresas accedan fácilmente a la tecnología SMS. Las empresas tienen necesidades específicas para integrar el envío de SMS, ya sea para la comunicación interna entre sus empleados, como con sus clientes para el envío masivo de SMS.
+\newline
+\newline
+\indent Tedexis ha desarrollado un \textit{Gateway} transaccional para el manejo de SMS llamado Mercurio que ofrece la posibilidad de integrarse con todos los proveedores de telecomunicaciones móviles de América Latina, vea la figura \ref{fig:tdx}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.75,type=png,ext=.jpeg,read=.jpeg]{imagenes/tdx2} \\
+  \caption{Tedexis}
+  \label{fig:tdx}
+\end{figure}
+\pagebreak
+
+\indent Los SMS se pueden clasificar como MO o MT dependiendo de su origen, como podemos ver en el gráfico \ref{fig:tdx1}. Si el mensaje es enviado por el usuario se le llama un mensaje MO y a la respuesta a este mensaje proveniente de una aplicación, se le llama MT, como por ejemplo la consulta de saldo por parte de un usuario es un MO, y la respuesta con el saldo es un MT.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.65,type=png,ext=.jpeg,read=.jpeg]{imagenes/tdx} \\
+  \caption{Vista ejemplo de MO y MT}
+  \label{fig:tdx1}
+\end{figure}
+
+\subsubsection{Analizar el modelo de datos local, de la plataforma y demás fuentes de datos de la aplicación}
+\indent Inicialmente se realizaron dos reuniones donde se mostraron el modelo de datos actual que posee la empresa Tedexis en su plataforma Mercurio. Mercurio es una puerta de enlace de manejo de SMS, capaz de integrar diferentes proveedores nacionales e internacionales en la lógica de intercambio de los mensajes de texto. La mayoría de las bases de datos están en PostgreSQL, pero poseen como proyecto la migración de dichas bases de datos a MongoDB.
+\newline
+\newline
+\indent De igual manera se recibieron tres clases donde se mostro parte del código que se utiliza como estándar para el desarrollo de aplicaciones en java dentro de Tedexis. Entre el código mostrado estaban librerías para conexiones a bases de datos PQSL las cuales tuvieron que ser adaptadas para el funcionamiento con MongoDB; librería para el uso de \textit{Logs} o registros; y librerías para el uso de MQ (\textit{Message queue}) las cuales no fueron utilizadas en este proyecto de pasantias.
+\newline
+\newline
+\indent Estas reuniones fueron realizadas con el Scrum Master, quien realizó la mayoría de las explicaciones y un miembro del área de dirección de productos de Tedexis, quien expuso los conceptos sobre MongoDB.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Levantamiento de información} \label{sect:Levantamiento de informacion}
+
+\subsection{Objetivos}
+\begin{itemize}[noitemsep,nolistsep]
+\item Definir reportes y funcionalidades a desarrollar. 
+\end{itemize}
+
+\subsection{Actividades}
+
+\subsubsection{Obtener los reportes que genera el sistema y son usados por los clientes de Tedexis}
+
+\indent Actualmente existe una versión de TID en producción, de la cual se tomaron los reportes minimos que debería poseer la segunda versión del sistema (TIID), por lo que se tomaron los reportes existentes como el alcance mínimo de la nueva versión. Los reportes fueron divididos en dos categorías: Reporte por empresa y reporte por pasaporte.
+\newline
+\newline
+\indent Reporte por empresa muestra diferentes tipos de reportes referente a la empresa asociada al usuario, dichos reportes son: Evolución de tráfico de mensajes total enviados tanto por día como por hora por la empresa en un rango de tiempo, pasaportes asociados a la empresa, distribución de los mensajes enviados por las operadoras asociadas, campañas de mensajería masiva y top de empresas asociadas según la cantidad de mensajes que hallan enviado.
+\newline
+\newline
+\indent Reporte por pasaporte muestra los reportes referente a los pasaportes asociados al usuario como individuo, dichos reportes son: Evolución de tráfico de mensajes enviados tanto por día como por hora y distribución de mensajes enviados por operadoras. La consulta de la información de todos los reportes se realiza eligiendo un rango de fechas especifico.
+
+\subsubsection{Definir las opciones que existen por cada reporte generado por el sistema e identificar los servicios que son ofrecidos por la interfaz}
+
+\indent Al tener definidos los reportes a implementar, se decidió que la información debería mostrarse en tablas, de igual manera, se definieron los campos especificos que debían mostrarse por cada reporte en dichas tablas y los tipos de gráficos que deberían mostrarse según el tipo de reporte los cuales fueron: Gráficos de líneas y barras en los reportes de evolución de tráfico; gráfico de torta en reporte de operadoras y top empresas.
+\newline
+\newline
+\indent Posteriormente, se concretó que los datos mostrados en las tablas deberían poder ser exportados por el usuario en formato csv, de igual manera, la tablas deberían poseer algún mecanismo de búsqueda y reorganización de los datos mostrados tanto por campos individuales como de forma global.
+
+\subsubsection{Obtener los roles disponibles y los privilegios asociados}
+
+\indent En la versión actual del sistema, los usuarios son gestionados por un sistema externo a TID por lo que se decidió crear un módulo de usuarios dentro de TIID. Inicialmente se propone que dentro de TIID el usuario administrador sea quien pueda crear y editar los usuarios del sistema, teniendose como perfiles: Tedexis (administrador) y canales (usuario regular). Con la diferencia de que el perfil tedexis posee acceso a todo el sistema, mientras que el perfil canales tiene restringidas ciertas vistas.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Desarrollo de documentación} \label{sect:Desarrollo de documentacin}
+
+\subsection{Objetivos}
+\begin{itemize}[noitemsep,nolistsep]
+\item Diseño de la solución global a implementar, parte 1. 
+\end{itemize}
+
+\subsection{Actividades}
+
+\subsubsection{Creación de documentos inciales}
+\indent Siguiendo los estandares de Tedexis, primero fue solicitado crear un documento de los casos de usos del sistema, utilizando una plantilla proporsionada por la empresa. Teniendo como versión final el siguiente diagrama \ref{fig:cdu}. Donde se muestran las funcionalidades que tiene acceso el usuario como son, autenticación, soporte y los diferentes reportes.
+\pagebreak
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.42,type=png,ext=.png,read=.png]{imagenes/cdu}
+  \caption{Diagrama de casos de uso.}
+  \label{fig:cdu}
+\end{figure}
+\newline
+\newline
+\indent Seguidamente, el \textit{Product Owner} solicitó la elabolarición de tres documentos: diccionario de datos, donde se muestra una versión inicial de la base de datos del sistema, dicha base de datos se implementó utilizando el manejador MongoDB por motivos de investigación de la empresa; el documento de vistas del sistema, en el que se muestran vistas tentativas de la interfaz del sistema; por último el documento de diagrama de despligue el cual muestra dicho diagrama, elaborado siguiendo el prototipo especificado por la empresa, como se puede apreciar en la figura \ref{fig:ddd}. 
+\pagebreak
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.50,type=png,ext=.png,read=.png]{imagenes/ddd}
+  \caption{Diagrama de despligue.}
+  \label{fig:ddd}
+\end{figure}
+
+\indent Este diagrama de despliegue \ref{fig:ddd} muestra de forma global como esta organizado el sistema, divido en front-end, desarrollado con el \textit{framework} AngularJS, servicio web desarrollados utilizando la arquitectura REST y back-end. El back-end posee dos apartados: el consolidador, que resume la información proveniente de una base de datos con información detalla, con el fin de optimizar los tiempos de respuesta en las consultas; y el consultor, el cual se encarga de realizar las consultas, provenientes de los servicios web, contra las bases de datos. Las bases de datos consultadas son: MetaDataDB de la que se utiliza la colección RTD (Reporte de tráfico detallado), la cual posee información detallada de todos los mensajes enviados por la empresa. Esta base de datos pertenece a otro sistema ajeno a TIID, la cual es utilizada cuando se activa el consolidador en el back-end ó cuando el cliente requiere reportes del día actual; y la base de datos TIID, la cual posee la información consolidad por cada usuario.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Selección de tecnologías} \label{sect:Seleccion de tecnologias}
+
+\subsection{Objetivos}
+\begin{itemize}[noitemsep,nolistsep]
+\item Diseño de la solución global a implementar, parte 2. 
+\end{itemize}
+
+\subsection{Actividades}
+
+\subsubsection{Selección de frameworks de desarrollo}
+\indent Para el desarrollo del sistema, se estableció desde un principio que el Back-End debía ser desarrollado enteramente en java utilizando el IDE Netbeans, ya que es el lenguaje de programación y el entorno de desarrollo integrado mayormente utilizados dentro de Tedexis. De igual manera el desarrollo del servicio REST cumplió el mismo estandar.
+\newline
+\newline
+\indent Para el desarrollo del Front-End se probaron diferentes herramientas. El personal de Tedexis tenía mayor preferencia por frameworks de desarrollo basados en java por lo que se probaron Sprint, Play y Grails, haciendo simples implementaciones \textit{Hola Mundo} con cada uno, sin embargo, se decidió utilizar AngularJS por la gran cantidad de documentación disponible y experiencia por parte del pasante con la herramienta. Con la utilización de dicho framework se lograron buenas prácticas de programación utilizando el patrón MVC (Modelo Vista Controlador), la arquitectura REST, el manejador de bases de datos MongoDB y el controlador de versiones Bitbucket.  
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Desarrollo del back-end} \label{sect:Desarrollo del back-end}
+
+\subsection{Objetivos}
+\begin{itemize}[noitemsep,nolistsep]
+\item Desarrollo del back-end. 
+\end{itemize}
+
+\subsection{Actividades}
+\indent Este \textit{sprint} muestra el desarrollo del back-end del sistema, el cual fue desarrollado enteramente en java, creadose como un proyecto tipo \textit{Java Application} en \textit{Netbeans} para tomar tu estructura de organización de archivos.
+\newline
+\newline
+\indent TIID tiene como función principal mostrar diferentes reportes a los usuarios sobre su uso del servicio de mensajería que les provee la empresa Tedexis, por lo cual tiene que manejar una gran cantidad de datos provenientes de la base de datos de la plataforma Mercurio. Esta plataforma consta de tres esquemas en PostgreSQL: Mercurio con seis tablas, DLR con doce tablas y Content con una tabla. Estos tres esquemas sirven como fuente de información para una base de datos en MongoDB, llamada MetaData la cual posee una colección que centraliza la información pertinente de los tres esquemas de la base de datos PostgresSQL. MetaData es una base de datos ajena a TIID, por lo que fue simulada durante el desarollo del sistema, de igual manera, posee una colección que tiene por nombre RTD (Reporte de Tráfico Detallado), quien es la principal fuente de información que utiliza TIID para generar todos sus reportes.
+\newline
+\newline
+\indent Ya que la colección RTD tiene la información centralizada de todos los esquemas de Mercurio, posee información que en muchos casos no son pertinentes para los reportes de TIID, por lo cual se crearon dos hilos que consolidan la información necesaria para el sistema. 
+
+\subsubsection{Diseño y creación de la base de datos}
+\indent Se tomó como manejador de bases de datos MongoDB, debido a que Tedexis tiene futuros proyectos la migración de sus bases de datos actuales de PostgreSQL a MongoDB por la mayor velocidad en el manejo de grandes cantidades de datos, por lo que se decidió investigar con el proyecto de pasantía.
+\newline
+\newline
+\indent La base de datos de TIID consta de cinco colecciones, como se puede vizualizar en el dragrama \ref{fig:bd}, las cuales se muestran a continuación:
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.50,type=png,ext=.png,read=.png]{imagenes/bd}
+  \caption{Diagrama de conceptual de base de datos.}
+  \label{fig:bd}
+\end{figure}
+
+\begin{itemize}[noitemsep,nolistsep]
+\item \textbf{user}: Almacena la infomación correspondiente a los usuarios de TIID. Posee los siguientes campos:
+\begin{itemize}[noitemsep,nolistsep]
+\item \textbf{user\_id}: identificación del usuario dentro de la colección. Ejemplo: Alejandro.
+\item \textbf{user\_name}: nombre del usuario. Ejemplo: Alejandro.
+\item \textbf{user\_mail}: correo electrónico del usuario. Ejemplo: alejandro@gmail.com
+\item \textbf{company}: corresponde a la compañía donde pertenece el usuario. Ejemplo: Tedexis.
+\item \textbf{user\_profile}: representa el perfil o privilegio del usuario. TIID posee dos perfiles, Tedexis (Administrador) y Canales. Ejemplo: Tedexis.
+\item \textbf{user\_pass}: contraseña del usuario.
+\end{itemize} 
+\item \textbf{passport}: Almacena la información de los pasaportes asociados a los usuarios de TIID. Los pasasportes son el equivalente a la identificación del usuario.\begin{itemize}[noitemsep,nolistsep]
+\item \textbf{\_id}: identificación del pasaporte dentro de la colección. Creado automaticamente por el manejador.
+\item \textbf{passport\_id}: identificación de los pasaportes. Ejemplo: 42.
+\item \textbf{passport\_name}: nombre del pasaporte. Ejemplo: AlejandroLunch
+\item \textbf{user\_mail}: correo electrónico del usuario que le pertenece dicho pasaporte. Ejemplo: alejandro@gmail.com.
+\item \textbf{company}: nombre de la compañía asociada al pasaporte. Ejemplo: Banco de Venezuela.
+\item \textbf{father\_company}: nombre de la empresa padre de la compañía asociada al pasaporte. Ejemplo: Tedexis.
+\item \textbf{phone}: número de contacto del propietario del pasaporte. Ejemplo: +584149322879.
+\item \textbf{balance}: saldo disponible del pasaporte. Ejemplo: 1000.
+\end{itemize} 
+\item \textbf{campaign}: Almacena los datos de las campañas de mensajería asociadas a las empresas.
+\begin{itemize}[noitemsep,nolistsep]
+\item \textbf{\_id}: identificación de la campaña dentro de la colección. Creado automaticamente por el manejador.
+\item \textbf{campaign\_name}: nombre de la campaña. Ejemplo: Navidad 2016.
+\item \textbf{descriptio}: descripción de la campaña. Ejemplo: Promociones para la época decembrina 2016.
+\item \textbf{type}: tipo de mensajes enviados en la campaña. Ejemplo: MT.
+\item \textbf{company}: nombre de la compañía a la que pertenece la campaña. Ejemplo: Banco de Venezuela.
+\item \textbf{sent\_valid}: número de mensajes enviados exitosamente. Ejemplo: 42.
+\item \textbf{sent\_invalid}: número de mensajes que no pudieron ser enviados. Ejemplo: 9.
+\end{itemize} 
+\item \textbf{tiid\_hora}: Almacena la información por hora, pertinente para TIID, de la colección RTD de la base de datos MetaData.
+\begin{itemize}[noitemsep,nolistsep]
+\item \textbf{\_id}: identificación del registro dentro de la colección. Creado automaticamente por el manejador.
+\item \textbf{passport\_id}: identificación del pasaporte que envió los mensajes. Ejemplo: 42.
+\item \textbf{passport\_name}: nombre del pasaporte que envió los mensajes. Ejemplo: AlejandroLunch
+\item \textbf{user\_mail}: correo electrónico del usuario que le pertenece dicho pasaporte. Ejemplo: alejandro@gmail.com.
+\item \textbf{company}: nombre de la compañía asociada al pasaporte. Ejemplo: Banco de Venezuela.
+\item \textbf{father\_company}: nombre de la empresa padre de la compañía asociada al pasaporte. Ejemplo: Tedexis.
+\item \textbf{msg\_type}: tipo agrupado de los mensajes enviados. Ejemplo: MO.
+\item \textbf{count}: cantidad de mensajes enviados a cierta fecha y hora. Ejemplo: 100.
+\item \textbf{moment}: fecha y hora a que fueron enviados los mensajes. Ejemplo: 11-13-2016 16:00:53.
+\end{itemize} 
+\item \textbf{tiid\_día}: Almacena la información por día, pertinente para TIID, de la colección RTD de la base de datos MetaData.
+\begin{itemize}[noitemsep,nolistsep]
+\item \textbf{\_id}: identificación del registro dentro de la colección. Creado automaticamente por el manejador.
+\item \textbf{passport\_id}: identificación del pasaporte que envió los mensajes. Ejemplo: 42.
+\item \textbf{passport\_name}: nombre del pasaporte que envió los mensajes. Ejemplo: AlejandroLunch
+\item \textbf{user\_mail}: correo electrónico del usuario que le pertenece dicho pasaporte. Ejemplo: alejandro@gmail.com.
+\item \textbf{company}: nombre de la compañía asociada al pasaporte. Ejemplo: Banco de Venezuela.
+\item \textbf{father\_company}: nombre de la empresa padre de la compañía asociada al pasaporte. Ejemplo: Tedexis.
+\item \textbf{msg\_type}: tipo agrupado de los mensajes enviados. Ejemplo: MO.
+\item \textbf{count}: cantidad de mensajes enviados a cierta fecha sin hora. Ejemplo: 100.
+\item \textbf{moment}: fecha sin hora a la que fueron enviados los mensajes. Ejemplo: 11-13-2016.
+\end{itemize} 
+\end{itemize}
+
+\subsubsection{Creación de hilos consolidadores de información}
+\indent El sistema TIID se alimenta de los datos proveniente de la colección RTD, como fue antes mencionado, pero dicha colección posee mucha información no relevante para el sistema lo que ocasiona tiempo de respuestas muy largos y desesperación por parte de los usuarios al consultar su información. Por lo que para optimizar la experiencia del usuario, mejorar las consultas de bases de datos y poseer tiempos cortos de respuesta al momento de la carga de datos en el front-end del sistema, se decidió poseer la mayor cantidad de información procesada dentro de la base de datos de TIID.
+\newline
+\newline
+\indent Para la consolidación de los datos de RTD, se crearon dos hilos:
+\begin{itemize}[noitemsep,nolistsep]
+\item \textbf{ThreadDayConsolidator}: esta clase fue creada como extensión de la clase \textit{Thread} de java, lo que permite redefinir el método \textit{run} para luego instanciar la clase y poner en ejecución el hilo con el método \textit{start}. Este hilo lo que hace es recorrer la colección \textit{passport} antes mencionada y por cada pasaporte totaliza la cantidad de mensajes MO, MT y MR enviados por día, mostrados en la colección RTD. Esta clase se apoya en una clase llamada \textit{Mongo} la cual a partir de un archivo de propiedades proporcionado, realiza las conexiones a las bases de datos MongoDB.
+\item \textbf{ThreadHourConsolidator}: esta clase es análoga a la clase \textit{ThreadDayConsolidator} solo que totaliza los mensajes por hora en vez de por día. Es importante mencionar que ambos hilos se activan una vez por día y consolidan los datos correspondiente al día anterior, por lo que si se realizan consultas del día actual, dichas consultas se llevan acabo directo en colección RTD.
+\end{itemize}
+
+\subsubsection{Pruebas}
+\indent Para las prueba de esta sección, primero se creó la bases de datos TIID en MongoDB con la colección \textit{passport} y luego se simuló la colección RTD de la base de datos MetaData. Ambas fueron llenadas mediante el comando \textit{mongoimport} \cite{mimport} con datos generados de forma aleatoria. Se pusieron a prueba ambos hilos por separado, primero \textit{ThreadDayConsolidator} y luego \textit{ThreadHourConsolidador} probando primero con 100 entradas en la colección RTD y 10 en la colección \textit{passport}, realizando la consolidación de la información sin ningún inconveniente. Luego se aumentó la cantidad de datos con 100000 entradas en RTD y 200 en \textit{passport}, superando la prueba sin ningún inconveniente.
+\newline
+\newline
+\indent De igual manera, se realizaron pruebas de borde donde se simuló la activación de los hilos a media noche (12:00 am ó 00:00:00), donde se encontraron algunos inconvenientes que no tomaba en cuenta los mensajes enviados justo a media noche pero fue solucionado con un ajuste en el rango de las fechas.
+\newline
+\newline
+\indent Finalmente se hicieron pruebas de integración, donde se activaron los dos hilos al mismo tiempo, agregando desde 100 hasta 100000 datos en RTD y desde 10 hasta 200 en \textit{passport}, lo que fue superado sin ningún inconveniente. Dichas pruebas fueron mostradas y aprobadas tanto por el \textit{Product Owner} como el \textit{Scrum Master}.
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Autenticación} \label{sect:Autenticacion}
+
+\subsection{Objetivos}
+\begin{itemize}[noitemsep,nolistsep]
+\item Desarrollo del módulo de autenticación. 
+\end{itemize}
+
+\subsection{Actividades}
+
+\subsubsection{Creación del servicio Web RESTful}
+\indent Para la creación del módulo de autenticación, primero se creó el servicio REST como un proyecto java utilizando Netbeans. Utilizando las herramientas proporcionadas por el entorno de desarrollo integrado, se instaló y configuró el servidor GlashFish 4.2, que es un servidor \textit{open source} para el desarrollo y despliegue de plataformas y tecnologías basadas en java. Al haber instalado el servidor, se procedió a instalar las librerías necesarias para poder invocar el API \textit{Jersey} quen proporcina los mecanismos indispensables para el desarrollo de los servicios REST.
+
+\subsubsection{Autenticación del usuario}
+\indent Al tener el proyecto REST creado, se procedió al desarollo del módulo de autenticación. Se utilizó un módulo basado en \textit{tokens}\cite{tokens} para AngularJS llamado \textit{Satellizer} igualmente \textit{open source}\cite{satellizer}. Con \textit{Satellizer} se logró implementar de forma sencilla el inicio de sesión, cierre de sesión y creación de usuarios para el sistema. En la creación de usuarios se puede elegir entre dos perfiles, Tedexis (administrados) y Canales (usuario regular), diferenciandoses en que el perfil Tedexis puede crear nuevos usuarios del sistema mientras que Canales no. Cabe destacar que \textit{Satellizer} permitió una fácil integración con en manejador MongoDB, se partió de un ejemplo desarrollado en java con el manejador H2 el cual fue posteriormente adaptado. A continuación se presentan las vistas del inicio de sesión \ref{fig:login} y creación de usuarios \ref{fig:signup}.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.30,type=png,ext=.png,read=.png]{imagenes/login}
+  \caption{Vista de inicio de sesión.}
+  \label{fig:login}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.30,type=png,ext=.png,read=.png]{imagenes/signup}
+  \caption{Vista de creación de usuario.}
+  \label{fig:signup}
+\end{figure}
+
+\indent Posteriormente se desarrolló la recuperación de contraseña del usuario, el cual dado un correo electrónico verifica si existe en la base de datos y genera una nueva contraseña, la cual es enviada por correo electrónico al usuario.
+
+\subsubsection{Pruebas}
+\indent Al crear el proyecto RESTful se crearon métodos GETs de prueba para verificar que se estaba accediendo a la base de datos y las colecciones correspondientes. Seguidamente se integraron los métodos POSTs necesarios para el inicio de sesión y creación de usuario, con el front-end del sistema. Se realizaron distintas pruebas de creación de usuarios y de inicio de sesión donde surgieron las restricciones de no poder crear un nuevo usuario con un correo electrónico ya existente en el sistema y el cifrado de las contraseñas, lo cual se logró con una librería que proporsiona \textit{Satellizer}.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Inicio del desarrollo de Reportes por Empresa} \label{sect:Inicio del desarrollo de Reportes por Empresa}
+
+\subsection{Objetivos}
+\begin{itemize}[noitemsep,nolistsep]
+\item Desarrollo de reportes por empresa, parte 1. 
+\end{itemize}
+
+\subsection{Actividades}
+\indent En este \textit{Sprint} se empezó con el desarrollo a fondo del front-end del sistema. El equipo de mercadeo de Tedexis proporsionó unas serie de documentos con los recursos visuales utilizados por la empresa, íconos, colores, logos, entre otros. y una plantilla llamada Gentelella \cite{gentelella}, la cual sirvió como base para el desarrollo de las vistas de TIID.
+
+\subsubsection{Creación de vista Saldo Pasaporte}
+\indent La vista inicial que se creó en el sistema, muestra una tabla con todos los pasaportes asociados al usuario cuya sesión esta activa, como se puede apreciar en figura \ref{fig:saldopasaporte}. En la creación de esta vista surgieron distintos problemas, ya que fue la primera tabla implementada combinando la librería proposionada por la plantilla Gentelella con los datos provenientes de la llamada de servicio RESTful. Dicha llamada es asincrona al momento de la carga de la página, lo que ocasionaba que en algunas ocasiones no se mostraran los datos, esto se resolvió utilizando promesas como cuerpo de las tablas al momento su creación.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.25,type=png,ext=.png,read=.png]{imagenes/saldopasaporte}
+  \caption{Reporte Empresa: Saldo Pasaporte.}
+  \label{fig:saldopasaporte}
+\end{figure}
+
+\subsubsection{Creación de vista Evolución del Tráfico}
+\indent Esta vista muestra el reporte de mensajes tipo MT y MR enviados por día por la empresa asociada al usuario en un rango de tiempo específico, el usuario puede elegir dicho rango de tiempo mediante un \textit{widget} de calendario proporsionado y puede descargar tanto el gráfico mostrado en un una imagen png, como la información del reporte mostrada en la tabla en un archivo de formato csv. De igual manera, el usuario puede aplicar distintos filtros y métodos de búsqueda proposionados por las funcionalidades de la tabla. Vea la figura \ref{fig:reet}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.30,type=png,ext=.png,read=.png]{imagenes/reet}
+  \caption{Reporte Empresa: Evolución del Tráfico.}
+  \label{fig:reet}
+\end{figure}
+
+\indent Para el desarrollo de esta vista primero se crearon los servicios RESTful que consulta la información consolidada en la colección “tiid\_dia" de la base de datos de TIID tanto para el gráfico como la tabla. Luego se escribieron las funciones para generar el gráfico y la tabla, incorporando el rango de fechas proposionado por un \textit{widget} calendario.
+
+\subsubsection{Creación de vistas Evolución Día y Evolución Hora}
+\indent La vista \textit{Evolución Día} es análoga a la vista \textit{Evolución del Tráfico} solo que muestra la información consolidada por día de los mensajes tipo MT y MO, mostrada en la figura \ref{fig:reed}. En cambio la vista \textit{Evolución Hora} sigue la misma lógica que las dos anteriores pero consulta la información consolidad por hora de la colección “tiid\_hora", por lo que se crearon los servicios de consulta REST respectivos. La figura \ref{fig:reeh} muestra el reporte por hora.
+% \pagebreak
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.30,type=png,ext=.png,read=.png]{imagenes/reed}
+  \caption{Reporte Empresa: Evolución Día.}
+  \label{fig:reed}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.30,type=png,ext=.png,read=.png]{imagenes/reeh}
+  \caption{Reporte Empresa: Evolución Hora.}
+  \label{fig:reeh}
+\end{figure}
+
+\subsubsection{Pruebas}
+\indent Las pruebas en este \textit{Sprint} se realizaron a medida que se fueron desarrollando cada vista. Primero se hicieron pruebas unitarias del servicio REST utilizado en la vista \textit{Saldo Pasaporte}, luego se hicieron pruebas de integración del servicio con la tabla mostrada en el fron-end. Las pruebas estan explicitas en el documento de \textit{Scrum} realizado, pero por politicas de confidencialidad de la empresa no pudieron ser presentados en este documento.
+\newline
+\newline
+\indent Posteriormente se realizaron las pruebas unitarias de los servicios REST utilizados en las vistas \textit{Evolución del Tráfico} y \textit{Evolución Día}. Dichas vistas comparten los mismos servicios. Se realizaron pruebas unitarias verificando que se estaba consultado la colección pertinente y que la presentación de la información fuera la indicada para que pudiera ser utilizada sin mucha modificación en el front-end del sistema. Seguidamente, se realizaron pruebas de integración con el \textit{widget} calendario, las consultas de los servicios y el despligue de los datos tanto gráficos como en la tabla. En estas pruebas no se presentaron inconvenientes. De la misma manera se hicieron las pruebas de los servicios REST utilizados en el reporte por hora y sus respectivas pruebas de integración con las funcionalidades proposionadas en el front-end.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Fin del desarrollo de Reportes por Empresa} \label{sect:Fin del desarrollo de Reportes por Empresa}
+
+\subsection{Objetivos}
+\begin{itemize}[noitemsep,nolistsep]
+\item Desarrollo de reportes por empresa, parte 2. 
+\end{itemize}
+
+\subsection{Actividades}
+
+\subsubsection{Desarrollo de vistas Top Empresas y Top Pasaportes}
+\indent Tanto \textit{Top Empresas} como \textit{Top Pasaportes} muestran las 5 primeras empresas y pasaporte, respectivamente, con mayor cantidad de mensajes enviados en un rango de tiempo establecido. Los reportes estan dividos en tres \textit{Top MO}, \textit{Top MT} y \textit{Top Interactivos}, cada uno con su gráfico y su tabla de datos, como son mostrados en las figuras \ref{fig:rete} y \ref{fig:retp}.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.30,type=png,ext=.png,read=.png]{imagenes/rete}
+  \caption{Reporte Empresa: Top Empresa.}
+  \label{fig:rete}
+\end{figure}
+
+% \pagebreak
+
+
+\indent En este \textit{Sprint} se procedió de manera similar al anterior, primero se desarrollaron los servicios REST para la obtención de datos para ambos reportes y luego se integraron cada uno con sus respectivos graficos y tablas. Finalmente se integraron los \textit{widget} calendario en cada reporte.
+
+
+\subsubsection{Desarrollo de vistas Campañas y Distribución Operadoras}
+\indent La vista \textit{Campañas} muestra todas las campañas de mensajerías asociadas a la empresa a la cual pertenece el usuario. Como se puede observar en la figura \ref{fig:campana}, es una tabla que muestra la información pertinente de las campañas de la empresa, proveniente de la llamada a un servicio REST.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.30,type=png,ext=.png,read=.png]{imagenes/retp}
+  \caption{Reporte Empresa: Top Pasaporte.}
+  \label{fig:retp}
+\end{figure}
+\newline
+\newline
+\indent Miestras que \textit{Distribución Operadoras} es un reporte parecido a \textit{Top Empresas}, donde se muestra la cantidad de mensejes enviados por cada operadora asociada a dicha empresa. El reporte de la distribución de las operadoras esta divido en tres secciones MO, MT e Interactivos, de igual menera que los repotes de \textit{Top Empresa} y \textit{Top Pasaportes}.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.30,type=png,ext=.png,read=.png]{imagenes/campana}
+  \caption{Reporte Empresa: Campañas.}
+  \label{fig:campana}
+\end{figure}
+
+\subsubsection{Pruebas}
+\indent Las pruebas realizadas en este \textit{Sprint} se realizaron de manera similar que las anteriores. Primero se realizaron pruebas unitarias a cada servicio REST y luego se integraron con lo desarrollado en el front-end. En este caso se tuvieron algunas dificultades en principio con el desarrollo de \textit{Top Empresas}, debido a que es una vista con más de una tabla y más de un gráfico por lo que se gneraban algunos conflictos de superposición de gráfico y ciertos filtros no ejercían su función en la tabla correspondiente. Esto se solucionó creando un controlador diferente por cada conjunto gráfico-tabla de cada reporte, es decir, en el caso de \textit{Top Empresas} se crearon 3 controladores diferentes, uno para \textit{Top MO}, otro para \textit{Top MT} y otro para \textit{Top Interactivos}. Esta misma lógica fue aplicada en los reportes \textit{Top Pasaportes} y \textit{Distribución Operadoras}.  
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Desarrollo de Reportes por Pasaporte} \label{sect:Desarrollo de Reportes por Pasaporte}
+
+\subsection{Objetivos}
+\begin{itemize}[noitemsep,nolistsep]
+\item Desarrollo de reportes por pasaporte. 
+\end{itemize}
+
+\subsection{Actividades}
+
+\subsubsection{Desarrollo de vistas de reporte de tráfico}
+\indent Se inició desarrolando las vista \textit{Evolución del Tráfico} para el reporte por pasasporte. Este reporte es similar al realizado anteriormente en los reportes por empresa, con la diferencia que primero se debe elegir un pasaporte del usuario en sesión, mostrados en una tabla al incio de la vista, y luego se muestra el tráfico de dicho pasaporte, como se puede observar en la figura \ref{fig:rpet}.
+\pagebreak
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.30,type=png,ext=.png,read=.png]{imagenes/rpet}
+  \caption{Reporte Pasaporte: Evolución del Tráfico.}
+  \label{fig:rpet}
+\end{figure}
+
+\indent La información mostrada en los reportes \textit{Evolución del Tráfico}, \textit{Evolución Día} y \textit{Evolución Hora} son análogos a sus versiones en el apartado \textit{Reporte Empresa}, correspondiendo a tráfico de mensajes por día de los tipos MT y MR para \textit{Evolución del Tráfico} y de los tipos MO y MT para \textit{Evolución Día}, mostrado en la figura \ref{fig:rped}, mientras que \textit{Evolución Hora} al seleccionar un pasaporte, muestra el tráfico por hora de los mensajes tipo MT y MO, como se observa en al figura \ref{fig:rpeh}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.30,type=png,ext=.png,read=.png]{imagenes/rped}
+  \caption{Reporte Pasaporte: Evolución Día.}
+  \label{fig:rped}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.30,type=png,ext=.png,read=.png]{imagenes/rpeh}
+  \caption{Reporte Pasaporte: Evolución Hora.}
+  \label{fig:rpeh}
+\end{figure}
+
+\indent Para el desarrollo de estas vistas, se tomaron como base los servicios REST creados para los reportes por empresa, los cuales fueron adaptados para que hicieran las consultadas a las colecciones consolidadas en base, utilizando los pasaportes en vez de las empresas. De igual manera, para el front-end se tomaron como plantillas las vistas de los reportes por empresa, se le agregaron una tabla nueva donde muestran los pasaportes pertenecientes al usuario y se crearon las funcionalidades pertinentes para integración de todo. No resultó ningún inconveniente en el desarrollo.
+\newline
+\newline
+\indent El desarrollo de \textit{Distribución Operadoras} se realizó de manera similar a lo expuesto anterior mente, se tomaron el servicio REST y la plantilla de la vista del reporte \textit{Distribución Operadora} por empresa y fueron adaptados de la misma forma. En el servicio REST fueron modificadas las consultas ya no por empresa sino por pasaporte y a la vista se le agregó una nueva tabla donde se elige un pasaporte y se muestra el reporte de la distribución de mensajes, enviados por dicho pasaporte, por operadora.
+
+\subsubsection{Pruebas}
+\indent Las pruebas se iniciaron con pruebas unitarias a los nuevos servicios REST desarrollados, verificando que las consultas estuvieran siendo realizadas en base al pasaporte suministrado y no en base a la empresa. Seguidamente, se realizaron pruebas de integración de las nuevas tablas que contienen todos los pasaportes asociados a un usuario y verificando que la información mostrada por pantalla, fueran los reportes pertenecientes al pasaporte seleccionado anteriorme. No resultaron ningún inconveniente en estas pruebas. De igual manera, las pruebas fueron mostradas y aprobadas por el \textit{Product Owner} y el \textit{Scrum Master}.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Desarrollo de ultimas vistas del front-end} \label{sect:Desarrollo de ultimas vistas del front-end}
+
+\subsection{Objetivos}
+\begin{itemize}[noitemsep,nolistsep]
+\item Desarrollo la vista principal y soporte. 
+\end{itemize}
+
+\subsection{Actividades}
+\indent Con este \textit{Sprint} se finalizó el desarrollo del sistema, antes de ser montado en un servidor local dentro de Tedexis para que fuera probado por el personal de la empresa.
+
+\subsubsection{Vista principal}
+\indent Para la vista principal se solicitó que tuviera un resumen de los reportes por empresa asociado al usuario, mostrando directamente distintos gráficos y la cantidad de mensajes enviados por ese usuario en el mes en curso. Ya que se deseaba que el usuario pudiera visualizar directamente información pertinente desde su entrada al sistema. Como se puede observar en la figura \ref{fig:principal}. Dichos requerimientos fueron cumplidos utilizando los servicios REST creados durante el desarrollo, al igual que las mismas funciones para la creación de gráficos. 
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.30,type=png,ext=.png,read=.png]{imagenes/principal}
+  \caption{Vista principal.}
+  \label{fig:principal}
+\end{figure}
+
+\subsubsection{Soporte}
+\indent El apartado de soporte se posee un formulario llamado \textit{Generar ticket}, el cual al ser completado con la información requerida, envía un correo al Departamento de Soporte de Tedexis para la gestión de la solicitud del cliente. Se puede visualizar esta vista en la figura \ref{fig:soporte}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.30,type=png,ext=.png,read=.png]{imagenes/soporte}
+  \caption{Vista soporte.}
+  \label{fig:soporte}
+\end{figure}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Pruebas por el personal de la empresa} \label{sect:Pruebas por el personal de la empresa}
+
+\subsection{Objetivos}
+\begin{itemize}[noitemsep,nolistsep]
+\item Pruebas y certificación. 
+\end{itemize}
+
+\subsection{Actividades}
+
+\subsubsection{Pruebas del equipo de producto}
+
+\indent A medida que se fueron realizando los sprint de desarrollo, se fueron realizando pruebas unitarias y de integración tanto en el front-end, como en el back-end y en los servicios rest, dependiendo de lo desarrollado en el sprint.
+\newline
+\newline
+\indent Posteriormente, el \textit{Scrum Master} decidió montar localmente en un servidor de la empresa el sistema realizado con el fin de recibir mayor retroalimentación por parte del personal de Tedexis. Inicialmente fue probador por el equipo del Departamento de Producto (los que desarrollan las aplicaciones dentro de la empresa), quienes se enfocaron mayormente en el código realizado, proveyendo recomendaciones de refactorización y documentación del código, especificamente en el back-end y en los servicios rest. De igual manera, propusieron ideas para la optimización de consultas de bases de datos de MongoDB, donde se utilizaron expresiones regulares y métodos de agrupación proporsionados por dicho manejador.
+
+\subsubsection{Pruebas del equipo de comercio}
+
+\indent Seguidamente de las pruebas realizadas por el Departamento de Producto, se les informó al Departamente de Comercio que podían ingresar al sistema y realizaran las pruebas pertinentes. La opinión de este departamento es sumamente importante debido a que son quienes más utilizarían el sistema, además de ser quien lo vende a los clientes de la empresa.
+\newline
+\newline
+\indent Las observaciones por parte de este departamento fueron en su mayoría enfocadas en el fron-end del sistema, solicitando cambios en la paleta de colores utilizada, la cual ayudaría a asociar al cliente con la empresa de forma más visual y directa; solicitud de que la información exportada de los diferentes reportes solo fuera en formato csv; solicitud de poder descargar los gráficos mostrados en los diferentes repotes en forma de imagenes; solicitud de poder cambiar entre gráfica de barra y gráfica de puntos en los reportes de tráfico de mensajes.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Redacción del libro de pasantía} \label{sect:Redaccion del libro de pasantia}
+
+\subsection{Objetivos}
+\begin{itemize}[noitemsep,nolistsep]
+\item Redacción de libro de pasantía. 
+\end{itemize}
+
+\subsection{Actividades}
+
+\subsubsection{Redacción del libro y versión final de los documentos de la empresa}
+\indent Como fue propuesto en el plan de trabajo, las últimas dos semanas fueron dedicadas a la redacción del libro de pasantías, adicinalmente, se actualizaron los documentos solicitados por la empresa, que pueden ser encontrados en los apendices.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

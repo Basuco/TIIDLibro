@@ -1,0 +1,35 @@
+Los tipos de datos que se utilizarán en este estándar son los siguientes:
+\begin{itemize}
+\item Cadena de caracteres.
+\item Enumeración.
+\item Tiempo y Hora.
+\item Entero.
+\item Decimal
+\item Booleano.
+\end{itemize}
+
+\subsection{Cadena de caracteres}
+Las cadenas de caracteres se representan con el nombre de ``Cadena de caracteres'' seguido de la longitud de la misma. Esta longitud es representada entre paréntesis de la siguiente forma.
+\begin{itemize}
+\item Cadena de caracteres (X-Y), indica que la longitud mínima de la cadena de caracteres es ``X'' y la máxima longitud es ``Y''.
+\item Cadena de caracteres (X+), indica que la longitud mínima de la cadena de caracteres es ``X'' pero no tiene longitud máxima para la misma.
+\end{itemize}
+Si la longitud no es especificada entonces no existe restricción sobre el tamaño de la cadena de caracteres.
+
+\subsection{Enumeración}
+Son los valores que puede tomar un campo. Estos pertenecen a un conjunto de cadena de caracteres definidas específicamente para ese campo en particular. Los diferentes tipos de enumeración serán especificados en la siguiente sección.
+
+\subsection{Tiempo y Hora}
+Tanto la hora como la fecha son cadenas de caracteres que se representan con un fromato particular. Para la hora el formto es ``\%H:\%M:\%S''. Para la fecha el formato es ``\%Y-\%m-\%d \%H:\%M:\%S''. Donde \%Y representa el año, \%m el mes, \%d el dia, \%H la hora, \%M el minuto, \%S el segundo. Todos los componentes de la hora y fecha se representan con caracteres numéricos.
+
+\subsection{Entero}
+Es un número entero y puede representarse de dos formas diferentes. Como un entero de cuatro bytes o como un entero de ocho bytes. Para especificar que es un entero de ocho bytes, debe ser escrito de la siguiente forma: Entero(8).
+\\
+\\
+Si no se especifica que un entero es de ocho bytes entonces se asume que es de cuatro  bytes.
+
+\subsection{Decimal}
+Es un número con hasta quince dígitos decimales.
+
+\subsection{Booleano}
+Un Booleano representa si una condición se cumple o no. En el caso del IFF un Booleano será representado por medio de un carácter. Es decir, el carácter 'T' será el que representa cuando un estado es cierto y 'F' será el valor de cuando el estado no se cumple.

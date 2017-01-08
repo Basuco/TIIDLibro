@@ -1,0 +1,81 @@
+\begin{thebibliography}{10}
+
+\bibitem{TDX}
+	Tedexis.  \url{https://http://tedexis.com}, consultado el 25 de septiembre de 2016.
+
+\bibitem{FW}
+	Wikipedia, The Free Encyclopedia. Software Framework.  \url{https://en.wikipedia.org/wiki/Software_framework}, consultado el 25 de septiembre de 2016.
+
+\bibitem{MVC}
+	THE MVC-WEB DESIGN PATTERN.  \url{http://grove.cs.jmu.edu/groverf/papers/WEBIST2011.pdf}, consultado el 25 de septiembre de 2016.
+
+\bibitem{SW}
+	Wikipedia, The Free Encyclopedia. Servicio Web.  \url{https://es.wikipedia.org/wiki/Servicio_web}, consultado el 25 de septiembre de 2016.
+
+\bibitem{Json}
+	Introducing JSON.  \url{http://www.json.org/}, consultado el 25 de septiembre de 2016.
+
+\bibitem{REST}
+	TechTarget. REST.  \url{http://searchsoa.techtarget.com/definition/REST}, consultado el 25 de septiembre de 2016.
+
+\bibitem{JV}
+	What is Java?.  \url{https://java.com/en/download/faq/whatis_java.xml}, consultado el 25 de septiembre de 2016.
+
+\bibitem{JS}
+	JavaScript.  \url{https://developer.mozilla.org/es/docs/Web/JavaScript}, consultado el 25 de septiembre de 2016.
+
+\bibitem{ANG}
+	What is AngularJS?.  \url{https://docs.angularjs.org/guide/introduction}, consultado el 25 de septiembre de 2016.
+
+\bibitem{MDB}
+	Reinventando la gestión de datos.  \url{https://www.mongodb.com/es}, consultado el 25 de septiembre de 2016.
+
+\bibitem{BW}
+	Bower a package manager for the web.  \url{http://bower.io/}, consultado el 25 de septiembre de 2016.
+
+\bibitem{HTML}
+	HTML.  \url{https://developer.mozilla.org/es/docs/Web/HTML}, consultado el 25 de septiembre de 2016.
+
+\bibitem{BB}
+	Programa, gestiona, colabora, Bitbucket es la solución Git para equipos profesionales.  \url{https://es.atlassian.com/software/bitbucket}, consultado el 25 de septiembre de 2016.
+
+\bibitem{NPM}
+	What is NPM?.  \url{https://docs.npmjs.com/getting-started/what-is-npm}, consultado el 25 de septiembre de 2016.
+
+\bibitem{NODE}
+	Node.js.  \url{https://nodejs.org/en/}, consultado el 25 de septiembre de 2016.
+
+\bibitem{SCRUM}
+	The Definitive Guide to Scrum.  \url{http://www.scrumguides.org/docs/scrumguide/v2016/2016-Scrum-Guide-US.pdf#zoom=100}, consultado el 26 de septiembre de 2016.
+
+
+\bibitem{mimport}
+	Mongoimport.  \url{https://docs.mongodb.com/manual/reference/mongoimport/}, consultado el 5 de octubre de 2016.
+
+\bibitem{hilo}
+	Clase de Hilos.  \url{http://ldc.usb.ve/~yudith/docencia/ci-3825/ClaseThreads.pdf}, consultado el 8 de octubre de 2016.
+
+\bibitem{cursor}
+	DBCursor class.  \url{https://api.mongodb.com/java/2.6/com/mongodb/DBCursor.html}, consultado el 10 de octubre de 2016.
+
+\bibitem{jar}
+	JAX-RS.  \url{https://jax-rs-spec.java.net/}, consultado el 12 de octubre de 2016.
+
+\bibitem{jersey}
+	Jersey - RESTful Web Services in Java.  \url{https://jersey.java.net/}, consultado el 12 de octubre de 2016.
+
+\bibitem{esquema}
+	Esquema en PostgreSQL.  \url{https://www.postgresql.org/docs/9.1/static/ddl-schemas.html}, consultado el 12 de octubre de 2016.
+
+\bibitem{satellizer}
+	Satellizer, Token-based AngularJS Authentication.  \url{https://github.com/sahat/satellizer}, consultado el 19 de octubre de 2016.
+
+
+\bibitem{tokens}
+	Autenticacion basada en Tokens.  \url{http://koldohernandez.com/autenticacion-basada-en-tokens/}, consultado el 19 de octubre de 2016.
+
+\bibitem{gentelella}
+	Gentelella.  \url{https://github.com/puikinsh/gentelella}, consultado el 19 de octubre de 2016.
+
+
+\end{thebibliography}

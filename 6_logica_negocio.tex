@@ -1,0 +1,28 @@
+\chapter{Módulo de la Lógica del Negocio}\label{chapter:Modulo de la Logica del Negocio}
+
+		En este capítulo se presenta la descripción del módulo especializado en la lógica del negocio, módulo intermediario entre el módulo de conexión a la interfaz IFC8 y el módulo del sistema de autenticación FreeRadius. En la primera sección se explica el procedimiento de clasificación de la información obtenida mediante la interfaz. En la segunda sección se describe la ‘conversión’ de dicha información una vez clasificada, a datos exactos que el sistema de autenticación entenderá (en este caso, el apellido de los huéspedes). En la tercera sección se explica el proceso de extensión del acceso a la red una vez que el huésped ha efectuado su salida del hotel. En la cuarta sección se detalla la clasificación de usuarios en los distintos grupos, según sus beneficios. Finalmente, en la quinta sección se resumen los resultados obtenidos en esta fase del proyecto.
+
+\section{Gestión de los datos obtenidos} \label{sect:Gestion de los datos obtenidos}
+		En esta etapa del desarrollo, surge la necesidad de ordenar y clasificar la información proveniente del PMS. Esto quiere decir, determinar si el mensaje recibido se debe al ingreso o salida de un huésped del hotel. Dicho proceso se hace bajo el respaldo de la implementación de una clase denominada OperaUser, que guarda cuatro atributos fundamentales: Número de habitación, Nombres del Huésped, Fecha y Hora del ingreso/salida, y \textit{Status}.
+
+\section{Conversión de apellidos de los huéspedes}
+
+		Debido a que los datos ya clasificados sirven de base para el motor de autenticación, se hace necesaria su depuración para que sean datos adecuados. Específicamente, se habla del cambio de los apellidos que contengan caracteres especiales como ‘ñ’, vocales acentuadas, e incluso caracteres no pertenecientes al idioma español (ej.: ‘ç’). Esto, además de aumentar las posibilidades de distribución internacional, permite facilidad de acceso a la red a los usuarios finales. 
+		
+\section{Manejo de la hora de salida de los huéspedes} \label{sect:Manejo de la hora de salida de los huespedes}
+		Si en la clasificación (descrita en la sección 7.1), se determina que el mensaje recibido es de tipo ‘salida’ (es decir, el huésped ha hecho check-out), se debe aplicar una extensión en la hora establecida. Esto se debe a la política del hotel de no suspender el acceso a la red, inmediatamente después que se efectúa la salida. Al usuario se le otorga una extensión de tiempo determinada, configurable por los administradores de NetPass. Luego de finalizada esa extensión, el usuario es eliminado de la base de datos del sistema, por lo que se le restringirá el acceso a la red.
+		
+\section{Categorización de usuarios} \label{sect:Categorizacion de usuarios}
+		En esta etapa del proceso surge la necesidad de categorizar a los usuarios que han ingresado al hotel (check-in). Dicha clasificación diferencia entre los recursos concedidos a cada usuario dentro de la red (por ejemplo, el uso de sesiones simultáneas, control de ancho de banda). Estas distinciones son otorgadas al motor de autenticación que se encarga de permitir o negar estos beneficios. La cantidad de planes de Internet es configurable por los administradores de NetPass (desde la aplicación web, descrita en capítulos posteriores), así como las caracteríticas de cada plan (precio, uso de dispositivos simultáneos, máxima cantidad de megabytes usados, rango de habitaciones, y status asociados en Opera PMS).
+		
+\section{Resultados obtenidos} \label{sect:Resultados obtenidos}
+		Como resultado de esta etapa del desarrollo se obtuvo el módulo que gestiona la lógica del negocio. En este punto, el sistema es capaz de amoldar los datos obtenidos desde OPERA PMS (a través de la interfez IFC8) y transformarlos según las especificaciones deseadas. Esto, con el fin de despacharlos al motor de autenticación, más adelante.
+		
+\section{Pruebas}
+	    En esta estapa del desarrollo se ejecutaron dos tipos de pruebas: unitarias y de integración. 
+\newline
+\newline
+\indent La pruebas unitarias consistieron en la simulación de un túnel de comunicación con este módulo, igualmente mediante el shell interactivo de Python. Los mensajes enviados eran réplicas de los mensajes que enviaba la interfaz, haciendo énfasis en los casos de interés, por ejemplo, apellidos con caracteres especiales. 
+\newline
+\newline
+\indent Las pruebas de integración buscaron verificar el correcto flujo de la información de un componente a otro. Para esto se utilizó como apoyo el sistema Opera, para la comparación de la cantidad de huéspedes actuales con la cantidad de usuarios con acceso a la red en NetPass. De igual forma se utilizaron consultas en la base de datos que sirvieran como verificación de correspondencia entre las distintas tablas.

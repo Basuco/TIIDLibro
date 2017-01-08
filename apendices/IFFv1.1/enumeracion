@@ -1,0 +1,147 @@
+\subsection{Correspondiente a personVerifyType}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|}
+\hline 
+\bfseries {Valor} & \bfseries {Descripción} & \bfseries {Por defecto} \\ 
+\hline 
+Passport & Pasaporte de crédito & N \\ 
+\hline 
+CI & Cedula de identidad & N \\
+\hline 
+\end{tabular} 
+\end{center}
+
+\subsection{Correspondiente a nameAddrType}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|}
+\hline 
+\bfseries {Valor} & \bfseries {Descripción} & \bfseries {Por defecto} \\ 
+\hline 
+Customer & Es la dirección del cliente & N \\ 
+\hline 
+ShipTo & Dirección a la cual algo debería ser enviado por correo & N \\
+\hline 
+Delivery & Dirección a la cual serán enviadas las facturas en papel & N \\
+\hline 
+\end{tabular} 
+\end{center}
+
+\subsection{Correspondiente a addrType}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|}
+\hline 
+\bfseries {Valor} & \bfseries {Descripción} & \bfseries {Por defecto} \\ 
+\hline 
+Seasonal & Habitación vacacional & N \\ 
+\hline 
+Primary & Habitación principal & N \\
+\hline 
+Secondary & Habitación secundaria & N \\
+\hline
+Business & Dirección de negocio & N \\
+\hline 
+\end{tabular} 
+\end{center}
+
+\subsection{Correspondiente a cardStatusCode}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|}
+\hline 
+\bfseries {Valor} & \bfseries {Descripción} & \bfseries {Por defecto} \\ 
+\hline 
+Active & Activa & N \\ 
+\hline 
+Expired & Vencida & N \\
+\hline 
+Blocked & Bloqueada & N \\
+\hline
+\end{tabular} 
+\end{center}
+
+\subsection{Correspondiente a accountStatusCode}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|}
+\hline 
+\bfseries {Valor} & \bfseries {Descripción} & \bfseries {Por defecto} \\ 
+\hline 
+Active & Activa & N \\ 
+\hline 
+Blocked & Bloqueada & N \\
+\hline
+\end{tabular} 
+\end{center}
+
+\subsection{Correspondiente a cardType}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|}
+\hline 
+\bfseries {Valor} & \bfseries {Descripción} & \bfseries {Por defecto} \\ 
+\hline 
+Credit & Tarjeta de crédito & N \\ 
+\hline 
+Debit & Tarjeta de débito & N \\
+\hline 
+\end{tabular} 
+\end{center}
+
+\subsection{Correspondiente a brand}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|}
+\hline 
+\bfseries {Valor} & \bfseries {Descripción} & \bfseries {Por defecto} \\ 
+\hline 
+Visa &  & N \\ 
+\hline 
+MasterCard &  & N \\
+\hline 
+\end{tabular} 
+\end{center}
+
+\subsection{Correspondiente a transType}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|}
+\hline 
+\bfseries {Valor} & \bfseries {Descripción} & \bfseries {Por defecto} \\ 
+\hline 
+Withdrawal & Retiro & N \\ 
+\hline 
+Deposit & Deposito & N \\
+\hline 
+Transference & Transferencia & N \\
+\hline
+\end{tabular} 
+\end{center}
+
+\subsection{Correspondiente a acctType}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|}
+\hline 
+\bfseries {Valor} & \bfseries {Descripción} & \bfseries {Por defecto} \\ 
+\hline 
+Saving & Ahorro & N \\ 
+\hline 
+Current & Corriente & N \\
+\hline 
+Loan & Préstamo & N \\
+\hline
+\end{tabular} 
+\end{center}
+
+\subsection{Correspondiente a contactInfo}
+\begin{center}
+\begin{tabular}{|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|>{\centering\arraybackslash}p{0.3\textwidth}|}
+\hline 
+\bfseries {Valor} & \bfseries {Descripción} & \bfseries {Por defecto} \\ 
+\hline 
+dayPhone & Teléfono de contacto durante el día & N \\
+\hline 
+evePhone & Teléfono de contacto durante la tarde & N \\
+\hline 
+dayFax & Fax de contacto durante el día & N \\
+\hline
+eveFax & Fax de contacto durante la tarde & N \\
+\hline
+emailAddr & Dirección de correo electrónica & N \\
+\hline
+\end{tabular} 
+\end{center}

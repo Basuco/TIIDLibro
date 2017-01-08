@@ -1,0 +1,60 @@
+\chapter*{Introducción} \label{sec:Introduccion}
+%\pdfbookmark[0]{Introducción}{introduccion} % Sets a PDF bookmark for the dedication
+
+\vspace{5 mm}
+
+\subsection*{Planteamiento del problema}
+Actualmente la empresa Tedexis posee un sistema de reporte de mensajería masiva, TID (\textit{Tedexis Interactive Dashboard}), alojado en su plataforma. Dicho sistema provee un servicio a travez de una interfaz web donde el cliente puede estar informado sobre sus mensajes enviados, acceder a manuales y tutoriales de diferentes productos, gestionar tiques de soporte técnico y conocer los medios a redes sociales de la organización.
+\newline
+\newline
+\indent Esta versión del sistema ha cumplido con las necesidades de los clientes satisfactoriamente hasta hace aproximadamente 2 años, cuando la empresa empieza a tener un incremento exponencial de la cantidad de mensajes enviados, lo que produjo una congestión en la consulta de información ya que no estimaron que el crecimiento de la empresa sería de forma tan abrupta.
+\newline
+\newline
+\indent Es importante señalar que los tipos de mensajes manejados por la empresa Tedexis son:
+\begin{itemize}[noitemsep,nolistsep]
+\item \textbf{MO}: corresponden a los mensajes originados desde teléfonos celulares. Las siglas MO corresponden a \textit{Mobile Originated}.
+\item \textbf{MT}: corresponden a los mensajes recibidos por los teléfonos celulares. Las siglas MT corresponden a \textit{Mobile Terminated}.
+\item \textbf{MR}: corresponden a los mensajes de respuesta de un MO. No es comúnmente usado en telecomunicaciones pero forma parte del lenguaje en Tedexis.
+\newline
+\end{itemize}
+
+\indent El problema más notorio que posee actualmente el sistema, es la lentitud en proveer los reportes de mensajería masiva al usuario, llegando a tardar incluso horas en la generación de dichos reportes, ocasionando que muchos clientes dejaran de utilizar el servicio. De igual manera, se presentan muchas quejas por parte del departamento de mercadeo de la empresa sobre la apariencia y funcionalidades nuevas que debería poseer el sistema.
+\newline
+\newline
+\indent Por lo expuesto anteriormente, nace la idea de TIID (\textit{Tedexis Interactive Dashboard II}) como versión mejorada del sistema en producción, con el que se desea obtener un producto capaz de mejorar las funcionalidades presentes en TID con una imagen más fresca, ligera, capaz de adaptarse a los dispositivos móviles, actual y con información integra y confiable. Esta nueva versión, debe ser capaz de obtener información de diferentes fuentes y proveer al cliente tiempos de respuesta decentes en la consulta de información.
+
+\subsection*{Solución propuesta}
+Se plantea el desarrollo de un sistema que permita:
+\begin{itemize}[noitemsep,nolistsep]
+\item Autentición de usuarios al sistema y asegurar el acceso restringindo a su información.
+\item Consolidación diaria del tráfico de datos de cada usuario para garantizar la disponibilidad y el rápido despligue de información.
+\item Cargar y mostrar información de reportes pertinentes al usuario.
+\end{itemize}
+
+\subsection*{Objetivo general}
+Se propone como objectivo general optimizar las funcionalidades del sistema TID de la empresa Tedexis, enfocandose en el rápido despligue de información de sus distintos reportes mediante el análisis, diseño y desarrollo de un nuevo sistema.
+
+\subsection*{Objetivos específicos}
+\begin{itemize}[noitemsep,nolistsep]
+\item Analizar el modelo de negocio de la aplicación a fin de comprender las necesidades requeridas.
+\item Especificar los requerimientos del sistema TIID.
+\item Diseñar una solución que cumpla con las funcionalidades de la versión anterior del sistema (TID).
+\item Implementar y probar las funcionalidades definidas para el sistema.
+\item Ejecutar las pruebas unitarias, de integración y de regresión necesarias para el sistema.
+\end{itemize}
+
+\subsection*{Alcance}
+Se definió como alcance del proyecto la entrega de un prototipo que cumpla con 90\%
+de funcionalidad. Se estableció que se dasarrollará y optimizará todas las funcionalidades que posee el sistema TID actualmente. Además se integrará un módulo de usuarios que permita el inicio de sesión y creación de nuevos usuarios, permitiendo elegir entre dos tipos de perfiles, administrador y general, que se diferenciaran simplemente en la cantidad de vistas a las que pueden acceder. Los requerimientos no funcionales a cumplir son: diponibilidad, confiabiliad, tiempos de respuesta cortos, seguridad y escalabilidad. Su implementación en producción no estuvo prevista como parte del proyecto de pasantía.
+
+\subsection*{Organización del informe}
+Este informe presenta los resultados del diseño y desarrollo del sistema TIID donde se explican las diferentes fases del desarrollo del mismo y el proceso de transformación de un concepto inicial a un prototipo funcional. Consta de 5 capítulos organizados de la siguiente manera:
+\begin{itemize}[noitemsep,nolistsep]
+\item Entorno Empresarial: provee una visión general de Tedexis, la empresa donde fue realizada la pasantia.
+\item Marco Teórico: presenta algunos conceptos teóricos, así como las herramientas tecnológicas utilizadas en el desarrollo del sistema.
+\item Marco Metodológico: describe la metodología utilizada en el desarrollo de la pasantía, Scrum.
+\item Desarrollo de la aplicación: presenta todo el proceso de desarrollo del sistema, actividades realizadas, problemas encontrados y como fueron resueltos.
+\item Conclusiones y recomendaciones: muestra las conclusiones y recomendaciones del proyecto.
+\end{itemize}
+
+

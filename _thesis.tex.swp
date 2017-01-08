@@ -1,0 +1,274 @@
+% file thesis.tex
+% Archivo thesis.tex
+% Documento maestro que incluye todos los paquetes necesarios para el documento
+% principal.
+
+% Documento obtenido por un sinfin de iteraciones de administradores del LDC
+% Estructura actual hecha por:
+% Jairo Lopez <jairo@ldc.usb.ve>
+% Actualizado ligeramente por:
+% Alexander Tough 
+
+\documentclass[oneside,12pt,letterpaper]{report}
+\tolerance=1000  
+\hbadness=10000  
+\raggedbottom
+
+% Para escribir algoritmos
+\usepackage{listings}
+\usepackage{algpseudocode}
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+
+\usepackage{pdflscape}
+
+% Paquetes para manejar graficos
+\usepackage{epsf}
+\usepackage[pdftex]{graphicx}
+\usepackage{epsfig}
+% Simbolos matematicos
+\usepackage{latexsym,amssymb}
+% Paquetes para presentar una tesis decente.
+\usepackage{setspace,cite} % Doble espacio para texto, espacio singular para
+                           % los caption y pie de pagina
+
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows}
+
+\usetikzlibrary{arrows,shapes}
+\usepackage{verbatim}
+
+\usepackage{comment}
+
+% Paquetes no utilizados para citas
+%\usepackage{mcite} 
+%\usepackage{draft} 
+
+\usepackage{wrapfig}
+\usepackage{alltt}
+
+% Acentos 
+\usepackage[spanish,activeacute,es-noquoting]{babel}
+
+\usepackage[spanish]{translator}
+\usepackage[utf8]{inputenc}
+\usepackage{color, xcolor, colortbl}
+\usepackage{multirow}
+\usepackage{subfig}
+\usepackage[OT1]{fontenc}
+\usepackage{tocbibind}
+\usepackage{anysize}
+\usepackage{listings} 
+
+% Para poder tener texto asiatico
+%\usepackage{CJK}
+
+\usepackage{pdfpages}
+
+% Opciones para los glosarios
+\usepackage[style=altlist,toc,nonumberlist,acronym]{glossaries}
+\usepackage{url}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{fancyhdr} % Necesario para los encabezados
+\usepackage{fancyvrb}
+\usepackage{makeidx} % En caso de necesitar indices.
+\makeindex  % Necesitado para los indices
+
+% Definiciones para definicions, teoremas y lemas
+\theoremstyle{definition} \newtheorem{definicion}{Definici\'{o}n}
+\theoremstyle{plain} \newtheorem{teorema}{Teorema}
+\theoremstyle{plain} \newtheorem{lema}{Lema}
+
+% Para la creacion de los pdfs
+\usepackage{hyperref}
+
+% Para resolver el lio del Unicode para la informacion de los PDFs
+% En pdftitle coloca el nombre de su proyecto de grado/pasantia.
+% En pdfauthor coloca su nombre.
+\hypersetup{
+    pdftitle = {Diseño y desarrollo de un prototipo de Core Bancario utilizando tecnología Web},
+    pdfauthor={Jon Ander Ricchiuti Urresti},
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black,
+    backref,
+    pdftex
+}
+
+\definecolor{brown}{rgb}{0.7,0.2,0}
+\definecolor{darkgreen}{rgb}{0,0.6,0.1}
+\definecolor{darkgrey}{rgb}{0.4,0.4,0.4}
+\definecolor{lightgrey}{rgb}{0.95,0.95,0.95}
+
+\usepackage{listings}
+\lstnewenvironment{code}{\lstset{basicstyle=\small}}{}
+
+\lstset{escapeinside=~~}
+\lstset{
+   frame=single,
+   framerule=1pt,
+   showstringspaces=false,
+   basicstyle=\footnotesize\ttfamily,
+   keywordstyle=\textbf,
+   backgroundcolor=\color{lightgrey}
+}
+
+% Crea el glosario
+\makeglossaries
+
+% Incluye el glosario
+\input{apendices/glosario.tex}
+
+% Para crear la hoja escaneada de las firmas
+\usepackage[absolute]{textpos}
+
+% Para que no hayan espacios entre items de listas
+\usepackage{enumitem} 
+
+% Pone los nombres y las opciones para mostrar los codigos fuentes
+\lstset{language=C, breaklines=true, frame=single, showstringspaces=false,
+        showtabs=false, numbers=left, keywordstyle=\color{black},
+        basicstyle=\footnotesize, captionpos=b }
+\renewcommand{\lstlistingname}{C\'{o}digo fuente}
+\renewcommand{\lstlistlistingname}{\'{I}ndice de c\'{o}digos fuentes}
+
+\newcommand{\todo}{ TODO: }
+
+% Dimensiones de la pagina
+\setlength{\headheight}{15pt}
+\marginsize{3cm}{2cm}{2cm}{2cm}
+\usepackage{hyperref}
+\usepackage{bookmark}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%      end of preamble and start of document     %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Pagina de titulo
+\input{0_portada.tex}
+\input{0_portada.tex}
+% Pagina de acta final (vacio)
+\includepdf[pages={1}]{ActaEvaluacionSELLADA.pdf}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{4}
+
+% Define encabezado numeros romanos y como se separan los captiulos y las
+% secciones
+\addtolength{\headheight}{3pt}
+\pagenumbering{roman}
+\pagestyle{fancyplain}
+
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter:\,\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\,\ #1}}
+
+\onehalfspacing
+
+\lhead{}
+\chead{}
+\rhead{}
+\renewcommand{\headrulewidth}{0.0pt}
+\lfoot{}
+\cfoot{\fancyplain{}{\thepage}}
+\rfoot{}
+
+% Cambios de titulos de indices
+\renewcommand{\listfigurename}{Índice de Figuras}
+\renewcommand{\listtablename}{Índice de Tablas}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\contentsname}{Índice General}
+
+% Pagina de resumen
+\input{0_resumen.tex}
+
+% Pagina de dedicatoria (opcional)
+\input{0_dedicatoria.tex}
+
+% Pagina de agradecimientos (opcional)
+\input{0_agradecimientos.tex}
+
+% Crea la tabla de contenidos
+\tableofcontents
+
+% Crea la lista de cuadros
+\listoftables
+
+% Crea la lista de figuras
+\listoffigures
+%\newpage
+\phantomsection
+\input{0_abreviaturas.tex}
+\addcontentsline{toc}{chapter}{Lista de Símbolos y Abreviaturas}
+
+% Crea la lista de codigos fuentes
+%\lstlistoflistings
+
+\clearpage
+
+% Define encabezado en numeros arabicos  
+\pagenumbering{arabic}
+
+\fancyhf{} % Redefine el encabezado 
+\lhead{}
+\chead{}
+\rhead{\fancyplain{}{\thepage}}
+\renewcommand{\headrulewidth}{0.0pt}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\onehalfspacing
+
+% Incluye los archivos deseados - El contenido de su proyecto de grado/pasantia larga.
+\phantomsection
+\addcontentsline{toc}{chapter}{Introducción}
+\input{0_intro.tex}
+
+\input{1_empresa.tex}
+
+\input{2_marco_teorico.tex}
+
+\input{3_marco_tecnologico.tex}
+
+\input{4_marco_metodologico.tex}
+
+\input{5_desarrollo_de_la_aplicacion.tex}
+
+\input{6_retos_logros.tex}
+
+\input{7_conclusiones.tex}
+
+
+% Establece las citas y bibliografia
+\bibliographystyle{ieeetr}
+\bibliography{myrefs}
+
+\glsaddall
+\printglossary
+
+% Crea el apendice
+\appendix
+\chapter{Lista de Riesgos}
+\includepdf[pages=-]{apendices/ListaRiesgos.pdf}
+\chapter{Especificación Funcional}
+\includepdf[pages=-]{apendices/ERS.pdf}
+\chapter{Investigación de la Arquitectura Banca+ Multicanal}
+\includepdf[pages=-]{apendices/ArquitecturaBanca+Multicanal.pdf}
+\chapter{Documento de Arquitectura de Software}
+\includepdf[pages=-]{apendices/DAS.pdf}
+\chapter{Arquitectura de Servicios Web REST}
+\includepdf[pages=-]{apendices/REST.pdf}
+\chapter{Sprint Backlog}
+\includepdf[pages=-]{apendices/SprintBacklog.pdf}
+
+%\includepdf[pages=-]{apendices/IFFv1.1/IFF.pdf}
+%\input{apendices/IFFv1.1/IFF.tex}
+%\input{apendices/Ejemplos_del_lenguaje.tex}
+%\input{apendices/Gramaticas.tex}
+
+
+\end{document}

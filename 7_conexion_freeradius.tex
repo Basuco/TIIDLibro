@@ -1,0 +1,73 @@
+\chapter{Conexión a sistema de autenticación}\label{chapter:Conexion a FreeRadius}
+
+		La segunda iteración del desarrollo corresponde al módulo de conexión con el motor de autenticación FreeRadius. En la primera sección de este capítulo se describen los primeros pasos de entendimiento de Freeradius. En la segunda sección se explica la conexión del motor de autenticación al WLAN Controller. En la tercera sección se explica el proceso de extensión de la base de datos del sistema de autenticación. En la cuarta sección se puntualizan los casos bordes encontrados a lo largo del desarrollo. En la quinta sección se explica el proceso de contablización de NetPass. Y, finalmente, en la sexta sección se resumen los resultados obtenidos en esta fase del proyecto.
+
+\section{Primeros pasos con FreeRadius} \label{sect:Primeros pasos con FreeRadius}
+		Esta etapa del desarollo corresponde a la familarización con el software de autenticación, FreeRadius. Dicho software posee una arquitectura cliente-servidor y, en las primeras pruebas realizadas, ambos componentes se alojaban en la misma máquina, por lo que los mensajes se enviaban a \textit{localhost}.
+\newline		
+\newline
+\indent FreeRadius cuenta con tres herramientas de almacenamiento principales: Archivos de Texto, Bases de Datos SQL y Directorios. En primer lugar se utilizaron archivos de texto que almacenan nombres de usuario y contraseñas, sin embargo, este método resulta difícil de mantener y actualizar. La segunda opción, correspondiente a bases de datos relacionales, específicamente MySQL, se muestra más práctica a la hora de getionar la información. 
+\newline
+\newline
+\indent FreeRadius proporciona también, un comando que permite simular la autenticación de usuarios, \textit{radtest}. En la tabla ~\ref{table:radtest} se muestra su estructura. El uso de este comando permitió comprender el intercambio de información entre el servidor Radius y el cliente Radius, conociendo así lo que cada componente espera del otro.
+\newline
+
+\begin{table}[H]
+%\centering 
+\begin{tabular}{ p{4cm} p{1,5cm} p{1,5cm} p{1,5cm} p{1,5cm} p{0,3cm} p{1,5cm} }
+\hline 
+\footnotesize \bfseries {Estructura} &\footnotesize  radtest &\footnotesize \{username\}       &\footnotesize \{password\} &\footnotesize \{hostname\} &\footnotesize 10   &\footnotesize \{secretkey\} \\
+\hline
+\footnotesize \bfseries {Mensaje ejemplo} &\footnotesize  radtest &\footnotesize usertest &\footnotesize passwtest &\footnotesize 127.0.0.1 &\footnotesize 10 &\footnotesize testing123 \\
+\hline
+ 
+\end{tabular}
+\footnotesize \caption{Tabla de estructura de comando radtest}
+\label{table:radtest}
+\end{table}
+ 
+		
+\section{Conexión de \textit{FreeRadius} a \textit{WLAN Controller}} \label{sect:Conexion de FreeRadius a WLAN Controller}
+		Es necesario establecer comunicación entre FreeRadius y un Servidor de Acceso a la Red, mejor conocido como NAS por sus siglas en inglés. Esto debido a que mientras FreeRadius es el encargado de distinguir entre usuarios legítimos e intrusos, el NAS es aquel que posee las credenciales de los usuarios que intentan acceder a la red.
+\newline
+\newline
+\indent FreeRadius contiene un archivo de configuración que permite especificar los clientes (NAS) con los que establece comunicación, agregando la dirección IP correspondiente, en este caso, al WLAN Controller a utilizar. De igual forma, es necesario definir la clave compartida entre ambos, así como el tipo de dispositivo a utilizar.
+\newline
+\newline
+\indent EL WLAN Controller presenta también un portal web, que permite editar las configuraciones que vienen por defecto, esto es, establecer a FreeRadius como protocolo de autenticación a la red. Se especifica la dirección IP del servidor Radius, así como la clave compartida entre ambos componentes.
+
+\section{Extensión de la bases de datos de \textit{FreeRadius}} \label{sect:Extension de la bases de datos de FreeRadius}
+		Con el fin de implementar las funcionalidades de NetPass, surgió la necesidad de extender el esquema de la base de datos de FreeRadius. En total se agregaron tres tablas denominadas, TGUESTOUT, POSTINGT, PWSEENBY, RADUSERGROUPCOPY Y SETTINGS.
+\newline		
+		
+		La primera tabla TGUESTOUT se encarga de almacenar los usuarios una vez que estos efectúan su salida del hotel (check-out), debido a que no pueden ser eliminados del sistema, hasta que culmine la extensión que se les otorgó. Por supuesto, cada usuario tiene una hora de salida distinta a la de los demás, por lo que es importante guardar este dato también.
+\newline		
+		
+		La segunda tabla POSTINGT se encarga de almacenar los datos de los usuarios de la red que compran el servicio de Internet, y que son introducidos al sistema NetPass mediante la interfaz web, que será descrita en capítulos posteriores.
+\newline		
+
+		La tercera tabla PWSEENBY se encarga de almacenar los usuarios de la aplicación web (empleados de la recepción del hotel) que visualizan las contraseñas de los usuarios de la red. Esto con propósitos de auditoría, en caso de existir discrepancias en el uso de los recursos de un usuario en particular.
+\newline
+		
+		La cuarta tabla RADUSERGROUPCOPY almacena el historial de uso de recursos en los planes de Internet, de manera que se puedan evaluar en reportes gráficos desde la aplicación web.
+		
+		La quinta tabla SETTINGS almacena los datos del sistema que son configurables por los administradores de NetPass. Su diseño, estilo ‘diccionario’, duplas de clave y valor, lo hacen extensible para futuras versiones del sistema, en caso de que se quieran agregar más datos parametrizables. Específicamente, se tienen los siguientes parámetros: Costo por hora del servicio de Internet, para los usuarios que pagan por el servicio y son ingresados desde la aplicación web. Tiempo de espera luego de registrar un check-out, para eliminar del sistema al usuario correspondiente. Cantidad de dispositivos que un usuario puede utilizar simultáneamente con su sesión, según su categoría preestablecida.
+
+		
+\section{Manejo de casos bordes} \label{sect:Manejo de casos bordes}
+		Un punto importante a considerar en el desarrollo de este proyecto, es la presencia de casos que pueden desviar el correcto funcionamiento de NetPass. Estos pueden ser, la existencia de dos usuarios con el mismo apellido, más de un huésped alojado en una misma habitación, o incluso, la posibilidad de que un usuario esté utilizando su tiempo de extensión, y otro usuario ingrese a la habitación en la que este se encontraba, lo que ocasionaría dos usuarios en la red con las mismas credenciales. 
+\newline		
+\newline
+\indent Para manejar los dos primeros casos, se procedió a incluir Constraints (restricciones) en las tablas correspondientes que hicieran única la dupla número de habitación y apellido. Para el último caso borde, se hace uso de \textit{Store Procedures} que garantizan que, luego de finalizada la extensión del primer usuario, este se elimine de la base de datos del sistema, en lugar del segundo usuario que ahora ocupa la habitación.
+
+\section{Contabilidad en NetPass} \label{sect:Contabilidad en NetPass}
+		La tercera funcionalidad de FreeRadius, correspondiente al protocolo AAA, es Contabilidad (o Accounting). Debido a la elección de bases de datos relacionales como herramienta de almacenamiento, esta información se guarda en una tabla denominada \textit{Radacct}, que posee atributos interesantes, como la hora de inicio y fin de la sesión, cantidad de bytes enviados y recibidos, dirección IP y dirección MAC de los usuarios que acceden a la red.
+\newline
+\newline
+\indent Esta información es útil para NetPass, ya que facilita la realización de reportes y análisis de estadísticas del comportamiento de los usuarios de la red. Dicho análisis estadístico es explicado con detalle en futuros capítulos de este informe.
+		
+\section{Resultados obtenidos} \label{sect:Resultados obtenidos}
+		Como resultado de esta etapa del desarrollo se obtuvo el módulo de conexión al software de autenticación FreeRadius. En este punto, el sistema es capaz de recibir las duplas de datos, número de habitación y apellido del huésped, (proveniente de IFC8, gestionado por el módulo de Business Logic), e insertarla en la base de datos de FreeRadius para proveer el servicio deseado a cada usuario.
+		
+\section{Pruebas}
+		Las pruebas en esta etapa del desarrollo, consistieron en la inserción de información en la base de datos de freeradius, como usuarios y contraseñas ficticios para verificar el funcionamiento del módulo. Para esto se creó un SSID temporal de la red del hotel, para autenticar a dichos usuarios, una vez que la conexión al WLAN controller estuviera establecida.

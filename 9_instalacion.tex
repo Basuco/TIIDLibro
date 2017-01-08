@@ -1,0 +1,33 @@
+\chapter{Implantación de NetPass}\label{chapter:Instalacion}
+		En este capítulo se presenta el proceso  correspondiente a la última fase de la metodología MSF, que se refiere a la integración correcta de la solución en un ambiente de producción. Dicha fase, al igual que el resto de secciones descritas en este capítulo, se consideran logros adicionales a la planificación inicial del proyecto. En la primera sección se describe el proceso de desarrollo del Script de Instalación de NetPass. En la segunda sección se detallan los requerimientos mínimos que debe tener un máquina en la que se quiera instalar NetPass. En la tercera sección se explica el proceso adicional del sistema, encargado del registro de errores e inserciones en la base de datos. En la cuarta sección se explican los pasos que se realizaron para garantizarla seguridad de los archivos que componen el sistema.
+
+\section{Script de Instalación} \label{sect:Script de Instalacion}
+		Con el fin de facilitar el traslado de la aplicación de un ambiente de pruebas a uno de producción, se desarrolló un script que contiene los comandos necesarios para la instalación de los componentes de NetPass.
+		
+		Dicho script se puede entender como una 'receta de cocina', pues refleja paso a paso el proceso necesario para ejecutar NetPass adecuadamente. Los pasos son:
+\begin{itemize}[noitemsep,nolistsep]
+\item Descargar el código fuente del repositorio en el que se encuentra.
+\item Creación de usuarios en la máquina y sus respectivos permisos.
+\item Instalación del lenguaje de programación python.
+\item Instalación del ambiente virtual.
+\item Creación del archivo de configuración NetPass.
+\item Creación de script que ejecuta NetPass como un servicio.
+\item Instalación de requerimientos de Django en el ambiente virtual.
+\item Ejecución automática de NetPass.
+\end{itemize}
+
+\section{Requerimientos Operacionales de NetPass} \label{sect:Requerimientos Operacionales de NetPass}
+		NetPass se compone de distintos elementos con requerimientos operacionales distintos. Por un lado, se encuentra MySQL, manejador de bases de datos utilizado, el cual trabaja adecuadamente con al menos 100Mb de memoria RAM (ninguna especificación de algún procesador en particular). Puede ser utilizado en distintos sistemas operativos como Windows, Linux, Solaris, OS X, entre otros. FreeRadius requiere de 512 a 800 MB para gestionar alrededor de 3.000 a 5000 usuarios diarios. Los sistemas operativos que soportan Freeradius son Linux (Ubuntu, Debian, Suse, Mandriva, Fedora Core, etc.), FreeBSD, Mac OSX (or, in Leopard Server), NetBSD, OpenBSD, DragonFlyBSD (uses NetBSD pkgsrc), Solaris, Cygwin, entre otros. Django, por su parte, demanda al menos de 32 a 35 MB, sin embargo, depende del tamaño de la aplicación. Soportado por sistemas operativos, tales como, Linux (Ubuntu, Debian, Suse, Mandriva, Fedora Core, etc.), Mac OS, Windows, entre otros.
+
+\section{Características de la máquina en la que se instala} \label{sect:Caracteristicas de la maquina en la que se instala}
+		La máquina \textit{host} de NetPass es una máquina virtual Ubuntu Server 14.04 de 64 bits. Posee 64 GB de espacio de memoria en disco duro, tres (3) procesadores virtuales, y 2 GB de memoria RAM. Al configurarlo se le instalan distintos paquetes de software, siendo el más importante el paquete OpenSSH Server, ya que permite acceder a la máquina remotamente.
+
+		
+\section{Log de errores/ Inserciones en la base de datos} \label{sect:Inserciones en la base de datos}
+		Una de las características de NetPass que garantizan su robustez, es la capacidad que posee de llevar el registro de todas sus operaciones, así como los errores que se produzcan durante su ejecución. Dicho proceso se realiza a través de la creación de un archivo de texto que contiene, a modo de bitácora, cada una de las transacciones realizadas en la base de datos, por ejemplo, una inserción o eliminación de un usuario del sistema. De igual forma, cualquier excepción o error de ejecución generado se registra con el mensaje y hora correspondiente. 
+		
+\section{Seguridad en archivos de NetPass} \label{sect:Seguridad en archivos de NetPass}
+		Los archivos correspondientes al frontend y al backend pertenecen a un usuario del sistema denominado "netpass", quien es el único con privilegios de lectura, escritura y ejecución de los mismos. Esta decisión agrega un mecaninsmo de protección en caso de que el usuario 'root' del servidor en el que se aloja el sistema, sea corrompido.
+
+\section{Script para iniciar NetPass como un servicio} \label{sect:Script para iniciar NetPass como un servicio}
+		En función de utilizar NetPass como un servicio, se procedió a la creación de un script en bash que facilita la manera en la que se inicia el programa. Cuenta con tres opciones principales, \textit{start} que inicia el demonio, \textit{restart} que lo reinicia, y \textit{stop} que lo detiene. Dicho script está configurado para correr NetPass en segundo plano, de manera que el servidor en el que se aloja el programa puede ejecutarlo sin supervisión de un usuario.

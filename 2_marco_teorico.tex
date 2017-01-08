@@ -1,0 +1,83 @@
+% Marco Teorico.
+\chapter{Marco Teórico} \label{chap:Marco Teorico}
+
+\vspace{5 mm}
+
+	En este capítulo se exponen los conceptos fundamentales que sustentan el trabajo realizado, adicionalmente se explican las herramientas tecnológicas utilizadas para el desarrollo.
+	
+\section{Framework} \label{sect:Framework}
+Un framework se define como un conjunto estandarizado de conceptos, prácticas
+y criterios para enfrentar un tipo de problema particular. De igual manera
+puede ser visto como un esqueleto o patrón para el desarrollo de una aplicación.\cite{FW}
+
+\section{Servicio Web} \label{sect:Servicio Web}
+Un servicio web es un conjunto de protocolos y estándares empleados para
+intercambiar información entre aplicaciones web, no necesariamente escritas
+en el mismo lenguaje de programación, ni alojadas en la misma plataforma
+por lo que brinda versatilidad en el desarrollo. Algunos de los servicios web
+mas utilizados son: XML (Extensible Markup Language), SOAP (Simple Object Access Protocol), REST (Representational State Transfer) entre otros. Los servicios web dentro de un framework, son generalmente utilizados para establecer comunicación entre el back-end y front-end del producto a desarrollar.\cite{SW}
+
+\section{Transferencia de Estado Representacional} \label{sect:REST}
+La Transferencia de Estado Representacional (REST), es un estilo de arquitectura
+para sistemas distribuidos. Se apoya en el protocolo HTTP para definir
+todas las operaciones que puede realizar, GET, POST, PUT y DELETE, que permiten
+la comunicación entre el servicio y el cliente. Gracias a la arquitectura
+desacoplada y versatilidad en la comunicación entre productor y consumidor,
+la popularidad en la utilizacion de REST aumente considerablemente.\cite{REST}
+
+\section{Patrón MVC} \label{sect:MVC}
+Modelo-Vista-Controlador es un patrón de diseño que busca estructurar aplicaciones de manera modular.\cite{MVC} Para esto, se pueden apreciar tres componentes:
+\begin{itemize}[noitemsep,nolistsep]
+\item Modelo: Aqui se encuentra encapsulada la estructura y funcionalidad de la aplicacion.
+\item Vista: Este componente representa la interfaz gráfica que es mostrada al usuario.
+\item Controlador: El propósito del controlador es desacoplar el modelo de la vista. Define la forma en la que la aplicación reaccionará a la interacción con el usuario.\end{itemize}
+
+\section{Hilos} \label{sect:Hilos}
+Los hilos, también conocidos como \textit{Threads} es una forma de
+realizar concurrencia, los distintos hilos de ejecución comparten una serie de recursos tales como el espacio de la memoria, los archivos abiertos, etc. Un hilo es simplemente una tarea que puede ser ejecutada al mismo tiempo con otra tarea.\cite{hilo}
+
+\section{JavaScript} \label{sect:JS}
+JavaScript es un lenguaje interpretado, orientado a objetos, débilmente tipado
+y dinámico. Los objetos se crean añadiendo métodos y propiedades. Una vez se ha construido un objeto, puede usarse como modelo (o prototipo) para crear objetos similares.\cite{JS}
+
+
+\section{AngularJS} \label{sect:AJS}
+AngularJS es un framework estructural para aplicaciones web dinámicas. Su
+uso permite la modularidad e independencia de Mediante el enlace de datos y la inyección de dependecias facilita muchísimo el trabajo de desarrolladores permitiendo que el codigo sea mucho mas simplificado y concreto. Funciona unicamente en el Front-End, lo que permite poder usar cualquier cosa en el Back-End sin que se vea afectado su funcionamiento. 
+
+Un uso adecuado de este framework proporciona ventajas como reusabilidad, modularidad e independecia del servidor.\cite{ANG}
+
+\section{MongoDB} \label{sect:MongoDB}
+MongoDB es una base de datos NoSQL basada en esquemas, que gracias a su escalibilidad y agilidad permite que los esquemas puedan cambiar rápidamente a medida que las aplicaciones evolucionan, proporcionando siempre la funcionalidad que los desarrolladores esperan de las bases de datos tradicionales, tales como índices secundarios, un lenguaje completo de búsquedas y consistencia estricta.\cite{MDB}
+
+\section{Bower} \label{sect:Bower}
+Bower es un manejador de versiones que administra componentes que tienen HTML, CSS, JavaScript entre otros. Te permite instalar las dependencias con los paquetes necesarios.\cite{BW}
+
+\section{NodeJS} \label{sect:NodeJS}
+Es una plataforma desarrollada sobre V8 JavaScript Runtime, posee una arquitectura basada en un manejador de eventos capaz de realizar taréas asincronas en I/O, lo que lo hace eficiente para aplicaciones que manejan grandes cantidades de datos en tiempo real.\cite{NODE}
+
+\section{NPM} \label{sect:NPM}
+Node package manager, también conocido como NPM, es un manejador de paquetes o módulos que permite a los desarrolladores compartir soluciones. Con NPM se puede especificar la versión que se desea instalar y las dependencias necesarias.\cite{NPM}
+
+\section{HTML} \label{sect:HTML}
+El lenguaje de marcado de hipertexto (HyperText Markup Language) es el elemento de construcción más básico de una página web y se utiliza para crear y representar visualmente una página web.\cite{HTML}
+
+\section{JSON} \label{sect:JSON}
+JSON (JavaScript Object Notation) es un formato ligero de intercambio de datos. Es fácil de leer y escribir para humanos, como es de fácil de parsear y generar para computadoras\cite{Json}. Esta compuesto de dos estructuras:
+\begin{itemize}[noitemsep,nolistsep]
+\item Collecciones, que vienen en pares de nombre y valor
+\item Lista ordenada de valores.
+\end{itemize}
+
+\section{JAVA} \label{sect:JAVA}
+Java es un lenguaje de programación orientado a objetos. Su propósito es permitir que los desarrolladores de aplicaciones escriban el programa una vez y lo ejecuten en cualquier dispositivo.\cite{JV}
+
+\section{Bitbucket} \label{sect:Bitbucket}
+Bitbucket es controlador de versiones distribuido, que facilita el trabajo grupal y permite alojamiento web a todo tipo de proyectos. Este servicio está escrito en Python.\cite{BB}
+
+\section{JAX-RS} \label{sect:JAX-RS}
+JAX-RS también conocido como Java API for RESTful Web Services, es una API implementada en JAVA que proporciona los recursos necesarios para la creación de servicios web de acuerdo al estilo REST \cite{jar}.
+
+\section{Jersey} \label{sect:Jersey}
+Jersey para servicios web RESTful es un framework de código abierto de calidad que provee soporte para JAX-RS y sirve como una implementación de las referencias de JAX-RS. Jersey tiene su propio API con características adicionales y utilidades que ayudan aún más a simplificar el servicio REST y el desarrollo del cliente \cite{jersey}.
+

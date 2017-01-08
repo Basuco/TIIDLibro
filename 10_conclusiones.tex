@@ -1,0 +1,21 @@
+\chapter{Conclusiones y Recomendaciones} \label{chapter:Conclusiones y Recomendaciones}
+
+Al culminar el tiempo estipulado para el desarrollo de la pasantía, se puede afirmar que los objetivos inciales fueron alcanzados en su mayoría y superados en muchos casos, obteniendo un producto final que satisface las necesidades tanto de los clientes como el personal de la empresa que hace uso del sistema.
+\newline
+\newline
+\indent La versión TIID supera en velocidad de acceso y respuesta a su versión anterior TID. El nuevo sistema posee una interfaz gráfica agradable y cómoda para el usuario, quien tiene acceso a una diversidad de reportes relevantes que lo mantienen al tanto de su actividad con la empresa. Dichos reportes estan divididos en dos apartados: Reportes por Empresa, donde se muestran distintos reportes basados en la información provenientes de todos los clientes asociados a la empresa del usuario; y Reportes por Pasaporte, donde se muestran en detalle distintos resportes referentes a cada pasasporte asociado al usuario. Los reportes mencionados poseen distintos mecanismos de búsqueda y filtros para su mejor visualización, de igual manera, pueden ser exportados si el usuario lo desea.
+\newline
+\newline
+\indent TIID se divide en back-end, front-end y servicios web, donde el back-end se encarga de la consolidación de los mensajes enviados por la plataforma Mercurio en un día, realizado por dos hilos: uno que consolida los mensajes enviados por día y otro que lo hace por hora, esto se almacena en una base de datos NoSQL. Dicha consolidación se lleva acabo para el rápido acceso de información en las consultas realizadas por los servicios web, que en este caso fueron implementados siguiendo la aquitectura REST, quienes proveen los datos consultados en formato tipo JSON. Finalmente dicha información es desplegada en el front-end del sistema como reportes en forma de gráficas y tablas de datos, los cuales pueden ser consultados en diferentes rangos de tiempo y descargados si el usuario lo desea.
+\newline
+\newline
+\indent En cuanto a la metodología de desarollo se puede afirmar, que \textit{Scrum} resultó ser un buen mecanismo de desarrollo, permitiendo que se realizara de manera organizada, manteniendo constante comunicación con el \textit{Product Owner} y el \textit{Scrum Master} y sobre todo, la rápida y fluida adaptación durante el desarrollo a cambios, sugerencias e improvistos surgidos.
+\newline
+\newline
+\indent Como recomendaciones para la empresa se puede mencionar: mejorar la comunicación entre los Departamentos Comercio, Producto y Operaciones, ya que muchas veces proveían diferente información sobre un mismo requerimiento del producto, por lo que había que invertir tiempo adicional en definir nuevamente los puntos y llegar a nuevos acuerdos; disposición a utilizar nuevas tecnologías, debido a que todo lo desarrollan utilizando java y están un poco cerrados a probar diferentes tecnologías que les pueden llegar a ser muy útiles; y realizar y mantener organizada documentación relevante de los productos desarrollados por la empresa.
+\newline
+\newline
+\indent Esta experiencia sirvió para integrar al pasante en un ambiente laboral real, donde se le permitió un diseñar y desarrollar un producto que resuelve una problemática que sufre actualmente la empresa. Integrarlo en una situación donde el trabajo en equípo y la comunicación fueron pilares fundamentales para el logro de las metas propuestas. De igual manera, permitió al pasante indagar y aprender nuevas tecnologías y herramientas utilizadas en producción por muchas compañías. Una experiencia integra, que permitió el desarrollo tanto personal como profesional.
+\newline
+\newline
+\indent Finalmente, queda como trabajo futuro el desarrollo a fondo del módulo de autenticación del sistema, desarrolando una mayor cantidad de perfiles y toda la lógica que conlleva y la integración de otros dos sistemas como módulos dentros de TIID, dichos sistemas son: Reporte del tráfico detallado (RTD) y el sistema de programación de envío masivo de mensajes (TrinityKronos), los cuales no fueron desarrollados en este proyecto de pasantias.
